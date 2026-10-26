@@ -7,120 +7,110 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 export default function SpecialOffersSlider() {
-  // دیتای نمونه محصولات
   const products = [
-    { id: 1, title: 'استیکر لپ تاپ پیکسل مدل نقشه ایران سنتی', price: '۶۰,۰۰۰', oldPrice: null, discount: null, image: 'https://via.placeholder.com/150', stars: 0 },
-    { id: 2, title: 'دسته بازی پلی استیشن ۵ سونی مدل...', price: '۱۳,۸۵۰,۰۰۰', oldPrice: '۱۵,۰۰۰,۰۰۰', discount: '۸٪', image: 'https://via.placeholder.com/150', stars: 3 },
-    { id: 3, title: 'گوشی موبایل اپل مدل iPhone 14 Pro Max...', price: '۵۶,۷۳۰,۰۰۰', oldPrice: '۶۵,۰۰۰,۰۰۰', discount: '۱۲٪', image: 'https://via.placeholder.com/150', stars: 4 },
+    { id: 1, title: 'استیکر لپ تاپ پیکسل مدل نقشه ایران سنتی', price: '۶۰,۰۰۰', oldPrice: null, discount: null, image: 'https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-redmi-note-14-4g-1.jpg', stars: 0 },
+    { id: 2, title: 'دسته بازی پلی استیشن ۵ سونی مدل...', price: '۱۳,۸۵۰,۰۰۰', oldPrice: '۱۵,۰۰۰,۰۰۰', discount: '۸٪', image: 'https://fdn2.gsmarena.com/vv/pics/sony/sony-dualsense-1.jpg', stars: 3 },
+    { id: 3, title: 'گوشی موبایل اپل مدل iPhone 14 Pro Max...', price: '۵۶,۷۳۰,۰۰۰', oldPrice: '۶۵,۰۰۰,۰۰۰', discount: '۱۲٪', image: 'https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-14-pro-max-1.jpg', stars: 4 },
     { id: 4, title: 'هارد اکسترنال اچ‌دی‌وی‌دی مدل HDVOG', price: '۱۲,۳۵۰,۰۰۰', oldPrice: '۱۴,۰۰۰,۰۰۰', discount: '۱۱٪', image: 'https://via.placeholder.com/150', stars: 5 },
     { id: 5, title: 'اسپیکر بلوتوثی قابل حمل جی بی ال مدل...', price: '۲۴,۵۰۰,۰۰۰', oldPrice: '۲۸,۰۰۰,۰۰۰', discount: '۱۲٪', image: 'https://via.placeholder.com/150', stars: 5 },
     { id: 6, title: 'گوشی موبایل اپل مدل iPhone Duo', price: '۸۴۰,۰۰۰,۰۰۰', oldPrice: '۹۰۰,۰۰۰,۰۰۰', discount: '۶٪', image: 'https://via.placeholder.com/150', stars: 5 },
   ];
 
   return (
-    <div className="w-full max-w-7xl mx-auto py-8 px-4" dir="rtl">
+    <div className="w-full max-w-7xl mx-auto py-6 px-3 sm:px-4 overflow-hidden" dir="rtl">
       
-      {/* کانتینر اصلی با حاشیه قرمز و گوشه‌های گرد */}
-      <div className="relative border-2 border-[#ef4056] rounded-2xl p-4 bg-white flex items-stretch">
+      <div className="relative border-[1.5px] border-[#ef4056] rounded-2xl p-3 md:p-4 bg-white flex flex-col lg:flex-row items-stretch group">
         
-        {/* ================= بخش تایمر و پیشنهاد شگفت‌انگیز (سمت راست) ================= */}
-        {/* این بخش فقط در دسکتاپ (lg) نمایش داده می‌شود و در موبایل مخفی است */}
-        <div className="hidden lg:flex flex-col items-center justify-center min-w-[180px] w-[180px] border-l border-gray-100 pl-4">
-          <h2 className="text-[#ef4056] text-xl font-bold mb-1">پیشنهاد</h2>
-          <h2 className="text-[#ef4056] text-xl font-bold mb-4">شگفت‌انگیز</h2>
+        {/* ================= بخش تایمر ================= */}
+        <div className="flex lg:flex-col items-center justify-between w-full lg:w-[170px] lg:min-w-[170px] lg:border-l lg:border-gray-100 lg:pl-4 pb-2 mb-3 lg:pb-0 lg:mb-0 border-b border-gray-100">
+          <div className="flex items-center gap-1.5 lg:flex-col lg:gap-0">
+            <h2 className="text-[#ef4056] text-sm md:text-lg font-bold">پیشنهاد</h2>
+            <h2 className="text-[#ef4056] text-sm md:text-lg font-bold">شگفت‌انگیز</h2>
+          </div>
           
-          {/* آیکون هدیه */}
-          <div className="mb-6 relative">
-            <LuGift className="h-16 w-16 text-purple-600" />
-            {/* می‌توانید یک عکس واقعی هدیه اینجا بگذارید */}
+          <div className="mx-2 lg:my-4">
+            <LuGift className="h-7 w-7 lg:h-12 lg:w-12 text-purple-600" />
           </div>
 
-          <h3 className="text-[#ef4056] font-bold mb-3">محصولات شگفت‌انگیز</h3>
-          
-          {/* تایمر شمارش معکوس (فقط ظاهر) */}
-          <div className="flex items-center gap-1" dir="ltr">
-            <div className="bg-[#ef4056] text-white w-7 h-8 rounded-md flex items-center justify-center text-sm font-bold">۱۷</div>
-            <span className="text-[#ef4056] font-bold">:</span>
-            <div className="bg-[#ef4056] text-white w-7 h-8 rounded-md flex items-center justify-center text-sm font-bold">۲۱</div>
-            <span className="text-[#ef4056] font-bold">:</span>
-            <div className="bg-[#ef4056] text-white w-7 h-8 rounded-md flex items-center justify-center text-sm font-bold">۱۰</div>
+          <div className="flex flex-col items-center">
+            <h3 className="hidden lg:block text-[#ef4056] font-bold mb-2 text-xs">محصولات شگفت‌انگیز</h3>
+            <div className="flex items-center gap-1" dir="ltr">
+              <div className="bg-[#ef4056] text-white w-5 h-5 md:w-6 md:h-7 rounded flex items-center justify-center text-[10px] md:text-xs font-bold">۱۷</div>
+              <span className="text-[#ef4056] font-bold text-xs">:</span>
+              <div className="bg-[#ef4056] text-white w-5 h-5 md:w-6 md:h-7 rounded flex items-center justify-center text-[10px] md:text-xs font-bold">۲۱</div>
+              <span className="text-[#ef4056] font-bold text-xs">:</span>
+              <div className="bg-[#ef4056] text-white w-5 h-5 md:w-6 md:h-7 rounded flex items-center justify-center text-[10px] md:text-xs font-bold">۱۰</div>
+            </div>
           </div>
         </div>
 
-        {/* ================= بخش اسلایدر محصولات (سمت چپ) ================= */}
+        {/* ================= بخش اسلایدر محصولات ================= */}
         <div className="flex-1 relative lg:pr-4 overflow-hidden">
           <Swiper
             modules={[Navigation]}
-            spaceBetween={12}
-            slidesPerView={2} // موبایل: ۲ تا
+            spaceBetween={8}
+            slidesPerView={2.2}
+            // 🌟 این دو خط اضافه شدند تا اولین و آخرین اسلاید از لبه فاصله بگیرند
+            slidesOffsetBefore={12}
+            slidesOffsetAfter={12}
             navigation={{
               nextEl: '.custom-next',
               prevEl: '.custom-prev',
             }}
             breakpoints={{
-              // در تبلت ۳ تا
-              640: { slidesPerView: 3 },
-              // در دسکتاپ ۴ تا
-              1024: { slidesPerView: 4 },
+              480: { slidesPerView: 2.5 },
+              640: { slidesPerView: 3, spaceBetween: 10 },
+              1024: { slidesPerView: 4, spaceBetween: 12, slidesOffsetBefore: 16 }, // در دسکتاپ فاصله کمی بیشتر
+              1280: { slidesPerView: 5, spaceBetween: 12, slidesOffsetBefore: 16 },
             }}
-            className="h-full w-full"
+            className="h-full w-full !py-1"
           >
             {products.map((product) => (
               <SwiperSlide key={product.id} className="h-auto">
                 
-                {/* کارت محصول */}
-                <div className="flex flex-col h-full bg-white border border-gray-100 rounded-xl p-3 relative group hover:shadow-md transition-shadow">
+                <div className="flex flex-col h-full bg-white border border-gray-100 rounded-xl p-2 relative hover:shadow-md transition-shadow">
                   
-                  {/* آیکون قلب */}
-                  <button className="absolute top-3 left-3 text-gray-300 hover:text-red-500 transition-colors z-10">
-                    <LuHeart className="h-5 w-5" />
+                  <button className="absolute top-2 left-2 text-gray-300 hover:text-red-500 transition-colors z-10">
+                    <LuHeart className="h-3.5 w-3.5 md:h-4 md:w-4" />
                   </button>
 
-                  {/* برچسب تخفیف */}
                   {product.discount && (
-                    <span className="absolute top-3 right-3 bg-[#ef4056] text-white text-[11px] px-1.5 py-0.5 rounded-md font-bold z-10">
+                    <span className="absolute top-2 right-2 bg-[#ef4056] text-white text-[9px] md:text-[10px] px-1.5 py-0.5 rounded font-bold z-10">
                       {product.discount}
                     </span>
                   )}
 
-                  {/* عکس محصول */}
-                  <div className="w-full h-32 md:h-40 flex items-center justify-center mb-3">
-                    <img src={product.image} alt={product.title} className="max-h-full object-contain" />
+                  <div className="w-full h-20 sm:h-24 md:h-32 flex items-center justify-center mb-1 md:mb-2 mt-3">
+                    <img src={product.image} alt={product.title} className="max-h-full max-w-full object-contain mix-blend-multiply" />
                   </div>
 
-                  {/* عنوان محصول */}
-                  <h3 className="text-xs md:text-sm text-gray-700 font-medium line-clamp-2 h-10 mb-2 leading-relaxed">
+                  <h3 className="text-[10px] md:text-xs text-gray-700 font-medium line-clamp-2 h-7 md:h-8 mb-1 leading-relaxed">
                     {product.title}
                   </h3>
 
-                  {/* امتیاز ستاره‌ها */}
-                  <div className="flex items-center gap-0.5 mb-3 h-4">
+                  <div className="flex items-center gap-0.5 mb-1.5 h-3">
                     {product.stars > 0 ? (
                       Array(5).fill(0).map((_, i) => (
-                        <LuStar key={i} className={`h-3 w-3 ${i < product.stars ? 'text-yellow-400 fill-yellow-400' : 'text-gray-200'}`} />
+                        <LuStar key={i} className={`h-2 w-2 md:h-2.5 md:w-2.5 ${i < product.stars ? 'text-yellow-400 fill-yellow-400' : 'text-gray-200'}`} />
                       ))
                     ) : null}
                   </div>
 
-                  {/* بخش قیمت و دکمه سبد خرید */}
                   <div className="mt-auto flex items-end justify-between">
                     <div className="flex flex-col">
-                      {/* قیمت قبلی */}
                       {product.oldPrice && (
-                        <span className="text-gray-400 text-[11px] line-through decoration-gray-400 mb-0.5" dir="ltr">
+                        <span className="text-gray-400 text-[9px] md:text-[10px] line-through decoration-gray-400 mb-0.5" dir="ltr">
                           {product.oldPrice}
                         </span>
                       )}
-                      {/* قیمت جدید */}
-                      <div className="flex items-center gap-1 text-[#0a3187] font-bold text-sm">
+                      <div className="flex items-center gap-0.5 text-[#0a3187] font-bold text-[11px] md:text-xs">
                         <span>{product.price}</span>
-                        <span className="text-[10px] text-gray-500 font-normal">تومان</span>
+                        <span className="text-[8px] md:text-[9px] text-gray-500 font-normal">تومان</span>
                       </div>
                     </div>
                     
-                    {/* دکمه افزودن به سبد خرید */}
-                    <button className="bg-[#0a3187] text-white p-1.5 rounded-lg hover:bg-blue-800 transition-colors">
-                      <LuShoppingCart className="h-4 w-4" />
+                    <button className="bg-[#0a3187] text-white p-1 rounded-md md:rounded-lg hover:bg-blue-800 transition-colors">
+                      <LuShoppingCart className="h-3 w-3 md:h-3.5 md:w-3.5" />
                     </button>
                   </div>
                 </div>
@@ -129,12 +119,11 @@ export default function SpecialOffersSlider() {
             ))}
           </Swiper>
 
-          {/* دکمه‌های ناوبری (فلش‌ها) - در دسکتاپ دیده می‌شوند */}
-          <button className="custom-prev absolute top-1/2 -right-3 -translate-y-1/2 z-10 bg-white border border-gray-200 shadow-md rounded-full p-2 text-gray-500 hover:text-black opacity-0 group-hover:opacity-100 transition-opacity hidden md:block">
-            <LuChevronRight className="h-5 w-5" />
+          <button className="custom-prev absolute top-1/2 right-1 -translate-y-1/2 z-10 bg-white border border-gray-200 shadow-sm rounded-full p-1.5 text-gray-500 hover:text-black opacity-0 group-hover:opacity-100 transition-opacity hidden md:flex items-center justify-center">
+            <LuChevronRight className="h-4 w-4" />
           </button>
-          <button className="custom-next absolute top-1/2 -left-3 -translate-y-1/2 z-10 bg-white border border-gray-200 shadow-md rounded-full p-2 text-gray-500 hover:text-black opacity-0 group-hover:opacity-100 transition-opacity hidden md:block">
-            <LuChevronLeft className="h-5 w-5" />
+          <button className="custom-next absolute top-1/2 left-1 -translate-y-1/2 z-10 bg-white border border-gray-200 shadow-sm rounded-full p-1.5 text-gray-500 hover:text-black opacity-0 group-hover:opacity-100 transition-opacity hidden md:flex items-center justify-center">
+            <LuChevronLeft className="h-4 w-4" />
           </button>
         </div>
       </div>

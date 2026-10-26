@@ -1,60 +1,56 @@
 import React from 'react';
-// ایمپورت کامپوننت‌های Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
-// ایمپورت ماژول‌های مورد نیاز
 import { FreeMode } from 'swiper/modules';
 
-// ایمپورت استایل‌های پایه Swiper
 import 'swiper/css';
 import 'swiper/css/free-mode';
 
 export default function CategorySlider() {
-  // دیتای نمونه
+  // دیتای نمونه با عکس‌های واقعی و معتبر (Pexels)
   const items = [
-    { id: 1, title: 'راهنمای خرید', image: 'https://picsum.photos/100/100?random=1' },
-    { id: 2, title: 'iPhone duo', image: 'https://picsum.photos/100/100?random=2' },
-    { id: 3, title: 'مقایسه‌ها', image: 'https://picsum.photos/100/100?random=3' },
-    { id: 4, title: 'دانلاینک آبلند', image: 'https://picsum.photos/100/100?random=4' },
-    { id: 5, title: 'تبدیل نقاشی به...', image: 'https://picsum.photos/100/100?random=5' },
-    { id: 6, title: 'ایموجی آیکون...', image: 'https://picsum.photos/100/100?random=6' },
-    { id: 7, title: 'حذف صدای مزاحم', image: 'https://picsum.photos/100/100?random=7' },
-    { id: 8, title: 'آیفون ۱۴', image: 'https://picsum.photos/100/100?random=8' },
-    { id: 9, title: 'PS4', image: 'https://picsum.photos/100/100?random=9' },
-    { id: 10, title: 'جام جهانی', image: 'https://picsum.photos/100/100?random=10' },
-    { id: 11, title: 'موبایل تکنو', image: 'https://picsum.photos/100/100?random=11' },
-    { id: 12, title: 'هدفون', image: 'https://picsum.photos/100/100?random=12' },
+    { id: 1, title: 'راهنمای خرید', image: 'https://images.pexels.com/photos/5632402/pexels-photo-5632402.jpeg?auto=compress&cs=tinysrgb&w=200' },
+    { id: 2, title: 'iPhone duo', image: 'https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&w=200' },
+    { id: 3, title: 'مقایسه‌ها', image: 'https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=200' },
+    { id: 4, title: 'پاوربانک', image: 'https://images.pexels.com/photos/4526407/pexels-photo-4526407.jpeg?auto=compress&cs=tinysrgb&w=200' },
+    { id: 5, title: 'تبدیل نقاشی', image: 'https://images.pexels.com/photos/1109541/pexels-photo-1109541.jpeg?auto=compress&cs=tinysrgb&w=200' },
+    { id: 6, title: 'ایموجی', image: 'https://images.pexels.com/photos/2072165/pexels-photo-2072165.jpeg?auto=compress&cs=tinysrgb&w=200' },
+    { id: 7, title: 'حذف صدا', image: 'https://images.pexels.com/photos/164829/pexels-photo-164829.jpeg?auto=compress&cs=tinysrgb&w=200' },
+    { id: 8, title: 'آیفون ۱۴', image: 'https://images.pexels.com/photos/1092644/pexels-photo-1092644.jpeg?auto=compress&cs=tinysrgb&w=200' },
+    { id: 9, title: 'کنسول PS4', image: 'https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?auto=compress&cs=tinysrgb&w=200' },
+    { id: 10, title: 'جام جهانی', image: 'https://images.pexels.com/photos/274422/pexels-photo-274422.jpeg?auto=compress&cs=tinysrgb&w=200' },
+    { id: 11, title: 'موبایل', image: 'https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=200' },
+    { id: 12, title: 'هدفون', image: 'https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=200' },
   ];
 
   return (
-    <div className="w-full max-w-7xl mx-auto py-6 px-4" dir="rtl">
-      {/* 
-        تنظیمات Swiper:
-        slidesPerView="auto": باعث می‌شود عرض اسلایدها بر اساس محتوای آن‌ها تنظیم شود (ریسپانسیو خودکار)
-        spaceBetween={16}: فاصله بین اسلایدها
-        freeMode={true}: اجازه می‌دهد اسلایدر آزادانه و نرم با موس/لمس اسکرول شود (مثل عکس)
-      */}
+    // overflow-hidden باعث می‌شود صفحه اصلی به صورت افقی اسکرول نخورد
+    <div className="w-full max-w-7xl mx-auto py-6 px-4 overflow-hidden" dir="rtl">
+      
       <Swiper
         modules={[FreeMode]}
         slidesPerView="auto"
-        spaceBetween={16}
+        spaceBetween={12} // فاصله کمی کمتر برای موبایل
         freeMode={true}
-        className="w-full"
+        className="w-full !py-2" // کلاس !py-2 برای اینکه سایه یا حاشیه دایره ها در بالا و پایین بریده نشود
       >
         {items.map((item) => (
           <SwiperSlide key={item.id} className="!w-auto">
-            <div className="flex flex-col items-center gap-3 cursor-pointer group w-[90px] md:w-[110px]">
+            
+            {/* سایز دایره در موبایل 80px و در دسکتاپ 96px است */}
+            <div className="flex flex-col items-center gap-3 cursor-pointer group w-[80px] md:w-[100px]">
               
               {/* دایره عکس با حاشیه آبی */}
-              <div className="w-20 h-20 md:w-24 md:h-24 rounded-full border-2 border-blue-500 p-1 bg-white group-hover:border-blue-700 transition-colors">
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-blue-500 p-[2px] bg-white group-hover:border-blue-700 transition-colors">
                 <img 
                   src={item.image} 
                   alt={item.title} 
                   className="w-full h-full rounded-full object-cover"
+                  loading="lazy" // برای افزایش سرعت لود شدن
                 />
               </div>
               
               {/* متن زیر عکس */}
-              <span className="text-xs md:text-sm text-gray-600 text-center font-medium group-hover:text-black transition-colors truncate w-full">
+              <span className="text-[11px] md:text-[13px] text-gray-700 text-center font-medium group-hover:text-black transition-colors truncate w-full">
                 {item.title}
               </span>
               
