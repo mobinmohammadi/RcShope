@@ -51,7 +51,7 @@ export default function Header() {
     <header className="w-full border-b border-gray-200 bg-white relative z-50" dir="rtl">
       
       {/* ================= بخش بالایی هدر ================= */}
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:py-4 gap-2 lg:gap-4">
+      <div className="mx-auto flex max-w- items-center justify-between px-4 py-3 lg:py-4 gap-2 lg:gap-4">
         
         {/* سمت راست: لوگو و دکمه منو موبایل */}
         <div className="flex items-center gap-2 lg:gap-3 shrink-0">
