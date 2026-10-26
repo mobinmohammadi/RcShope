@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+
+@theme {
+    --font-Dana: Dana, sans-serif;
+    --font-Morabba: Morabba;
+}
+
+@font-face {
+    font-family: Dana;
+    font-display: swap;
+    src: url("/public/fonts/Dana/woff2/DanaFaNum-Medium.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: Morabba;
+    font-display: swap;
+    src: url("/public/fonts/Morabba/woff2/Morabba-Medium.woff2") format("woff2");
+}
