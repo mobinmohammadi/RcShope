@@ -8,12 +8,60 @@ import 'swiper/css/navigation';
 
 export default function SpecialOffersSlider() {
   const products = [
-    { id: 1, title: 'استیکر لپ تاپ پیکسل مدل نقشه ایران سنتی', price: '۶۰,۰۰۰', oldPrice: null, discount: null, image: 'https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-redmi-note-14-4g-1.jpg', stars: 0 },
-    { id: 2, title: 'دسته بازی پلی استیشن ۵ سونی مدل...', price: '۱۳,۸۵۰,۰۰۰', oldPrice: '۱۵,۰۰۰,۰۰۰', discount: '۸٪', image: 'https://fdn2.gsmarena.com/vv/pics/sony/sony-dualsense-1.jpg', stars: 3 },
-    { id: 3, title: 'گوشی موبایل اپل مدل iPhone 14 Pro Max...', price: '۵۶,۷۳۰,۰۰۰', oldPrice: '۶۵,۰۰۰,۰۰۰', discount: '۱۲٪', image: 'https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-14-pro-max-1.jpg', stars: 4 },
-    { id: 4, title: 'هارد اکسترنال اچ‌دی‌وی‌دی مدل HDVOG', price: '۱۲,۳۵۰,۰۰۰', oldPrice: '۱۴,۰۰۰,۰۰۰', discount: '۱۱٪', image: 'https://via.placeholder.com/150', stars: 5 },
-    { id: 5, title: 'اسپیکر بلوتوثی قابل حمل جی بی ال مدل...', price: '۲۴,۵۰۰,۰۰۰', oldPrice: '۲۸,۰۰۰,۰۰۰', discount: '۱۲٪', image: 'https://via.placeholder.com/150', stars: 5 },
-    { id: 6, title: 'گوشی موبایل اپل مدل iPhone Duo', price: '۸۴۰,۰۰۰,۰۰۰', oldPrice: '۹۰۰,۰۰۰,۰۰۰', discount: '۶٪', image: 'https://via.placeholder.com/150', stars: 5 },
+    { 
+      id: 1, 
+      title: 'استیکر لپ تاپ پیکسل مدل نقشه ایران سنتی', 
+      price: '۶۰,۰۰۰', 
+      oldPrice: null, 
+      discount: null, 
+      image: 'https://digital.pixaa.ir/wp-content/uploads/2026/08/d785465bdb8edeea7b0c4f035d3679f92fc0a30c_1776755004-1024x512.webp', // تصویر لپ تاپ
+      stars: 0 
+    },
+    { 
+      id: 2, 
+      title: 'دسته بازی پلی استیشن ۵ سونی مدل...', 
+      price: '۱۳,۸۵۰,۰۰۰', 
+      oldPrice: '۱۵,۰۰۰,۰۰۰', 
+      discount: '۸٪', 
+      image: 'https://digital.pixaa.ir/wp-content/uploads/2026/10/playstation.jpg', // تصویر پلی استیشن
+      stars: 3 
+    },
+    { 
+      id: 3, 
+      title: 'گوشی موبایل اپل مدل iPhone 14 Pro Max...', 
+      price: '۵۶,۷۳۰,۰۰۰', 
+      oldPrice: '۶۵,۰۰۰,۰۰۰', 
+      discount: '۱۲٪', 
+      image: 'https://digital.pixaa.ir/wp-content/uploads/2026/09/iPhone-18-Pro-Max-1TB-Burgundy-e1789200160101-300x300.webp', // تصویر آیفون
+      stars: 4 
+    },
+    { 
+      id: 4, 
+      title: 'هارد اکسترنال اچ‌دی‌وی‌دی مدل HDVOG', 
+      price: '۱۲,۳۵۰,۰۰۰', 
+      oldPrice: '۱۴,۰۰۰,۰۰۰', 
+      discount: '۱۱٪', 
+      image: 'https://digital.pixaa.ir/wp-content/uploads/2026/03/گوشی-موبایل-شیائومی-مدل-Poco-X7-Pro-دو-سیم-کارت-ظرفیت-256-گیگابایت-و-رم-8-گیگابایت-مشکی-300x300.webp', // تصویر شیائومی
+      stars: 5 
+    },
+    { 
+      id: 5, 
+      title: 'اسپیکر بلوتوثی قابل حمل جی بی ال مدل...', 
+      price: '۲۴,۵۰۰,۰۰۰', 
+      oldPrice: '۲۸,۰۰۰,۰۰۰', 
+      discount: '۱۲٪', 
+      image: 'https://digital.pixaa.ir/wp-content/uploads/2026/08/speaker-1024x506.webp', // تصویر اسپیکر
+      stars: 5 
+    },
+    { 
+      id: 6, 
+      title: 'گوشی موبایل اپل مدل iPhone Duo', 
+      price: '۸۴۰,۰۰۰,۰۰۰', 
+      oldPrice: '۹۰۰,۰۰۰,۰۰۰', 
+      discount: '۶٪', 
+      image: 'https://digital.pixaa.ir/wp-content/uploads/2026/09/Verizon-iPhone-Duo-256GB-Night-Sky-300x300.avif', // تصویر iPhone Duo
+      stars: 5 
+    },
   ];
 
   return (
@@ -50,7 +98,6 @@ export default function SpecialOffersSlider() {
             modules={[Navigation]}
             spaceBetween={8}
             slidesPerView={2.2}
-            // 🌟 این دو خط اضافه شدند تا اولین و آخرین اسلاید از لبه فاصله بگیرند
             slidesOffsetBefore={12}
             slidesOffsetAfter={12}
             navigation={{
@@ -60,7 +107,7 @@ export default function SpecialOffersSlider() {
             breakpoints={{
               480: { slidesPerView: 2.5 },
               640: { slidesPerView: 3, spaceBetween: 10 },
-              1024: { slidesPerView: 4, spaceBetween: 12, slidesOffsetBefore: 16 }, // در دسکتاپ فاصله کمی بیشتر
+              1024: { slidesPerView: 4, spaceBetween: 12, slidesOffsetBefore: 16 },
               1280: { slidesPerView: 5, spaceBetween: 12, slidesOffsetBefore: 16 },
             }}
             className="h-full w-full !py-1"
@@ -81,7 +128,13 @@ export default function SpecialOffersSlider() {
                   )}
 
                   <div className="w-full h-20 sm:h-24 md:h-32 flex items-center justify-center mb-1 md:mb-2 mt-3">
-                    <img src={product.image} alt={product.title} className="max-h-full max-w-full object-contain mix-blend-multiply" />
+                    <img 
+                      src={product.image} 
+                      alt={product.title} 
+                      className="max-h-full max-w-full object-contain mix-blend-multiply" 
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </div>
 
                   <h3 className="text-[10px] md:text-xs text-gray-700 font-medium line-clamp-2 h-7 md:h-8 mb-1 leading-relaxed">
