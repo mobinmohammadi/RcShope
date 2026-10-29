@@ -52,10 +52,11 @@
   width: auto !important;
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(10px);
-  padding: 6px 14px;
+  padding: 15px  15px;
   border-radius: 999px;
   display: flex;
   gap: 8px;
+  top: 89%;
   align-items: center;
   transition: all 0.3s ease;
 }

@@ -5,9 +5,10 @@ import QuickViewSection from "../../components/QuickViewModal/QuickViewModal";
 import SpecialOffersSlider from "../../components/SpecialOffersSlider/SpecialOffersSlider";
 import BlogSlider from "../BlogSlider/BlogSlider";
 import CategorySlider from "../../components/CategorySlider/StoriesSection";
+import FeatureBannerOnFooter from "../../components/FeatureBannerOnFooter/FeatureBannerOnFooter";
 const Home = () => {
   return (
-    <div className="font-Dana   mx-auto py-4 flex flex-col gap-5">
+    <div className="font-Dana   mx-auto flex flex-col gap-5">
       <CategorySlider />
       <HeroBanner />
       <CategorySlider />
@@ -16,6 +17,7 @@ const Home = () => {
       <BannerGrid />
       <QuickViewSection />
       <BlogSlider />
+      <FeatureBannerOnFooter/>
     </div>
   );
 };

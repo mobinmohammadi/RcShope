@@ -19,7 +19,7 @@ export default function BannerGrid() {
       {banners.map((banner) => (
         <div
           key={banner.id}
-          className="min-w-0  relative overflow-hidden rounded-xl bg-gray-100"
+          className="min-w-0  relative overflow-hidden rounded-xl"
         >
           <a className="block " href={banner.href}>
             <img

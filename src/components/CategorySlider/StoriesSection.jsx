@@ -67,7 +67,7 @@ export default function StoriesSection() {
 
   return (
     <>
-      <div className="w-full py-4">
+      <div className="w-full container p-8 py-4">
         <Swiper
           modules={[FreeMode]}
           freeMode
@@ -85,10 +85,10 @@ export default function StoriesSection() {
             <SwiperSlide key={item.id} className="!w-auto">
               <button
                 onClick={() => openStory(index)}
-                className="group flex flex-col items-center shrink-0 focus:outline-none"
+                className="group flex flex-col mt-3 items-center shrink-0 focus:outline-none"
               >
                 <div className="rounded-full p-[2.5px] bg-gradient-to-tr from-[var(--color-primary)] to-[var(--color-primary-400)] transition-transform duration-300 group-hover:scale-105">
-                  <div className="w-[60px] h-[60px] sm:w-[68px] sm:h-[68px] md:w-[78px] md:h-[78px] rounded-full bg-white dark:bg-gray-900 p-[2.5px]">
+                  <div className="w-25 h-25 ring-3 ring-sky-600 sm:w-[68px] sm:h-[68px] md:w-21  md:h-21 cursor-pointer rounded-full bg-white dark:bg-gray-900 p-[2.5px]">
                     <img
                       src={item.poster || item.src}
                       alt={item.title}

@@ -13,7 +13,7 @@ export default function BlogSlider() {
       id: 1,
       category: 'کسب و کار',
       title: 'چطور بروس، برای زندگی بهتر باید صنایع دستی را به عنوان یک شغل انتخاب کرد؟',
-      image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=600&auto=format&fit=crop',
+      image: '/1.webp',
       author: 'حامد صادقی',
       date: '۱۴۰۳/۰۵/۱۲',
       readTime: '۵ دقیقه'
@@ -22,7 +22,7 @@ export default function BlogSlider() {
       id: 2,
       category: 'ورزشی',
       title: 'مهندسی چنین؛ زیرساخت‌های جام جهانی فوتبال ۲۰۲۴ چطور ساخته شدند؟',
-      image: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=600&auto=format&fit=crop',
+      image: '/1.webp',
       author: 'حامد صادقی',
       date: '۱۴۰۳/۰۵/۱۰',
       readTime: '۸ دقیقه'
@@ -31,7 +31,7 @@ export default function BlogSlider() {
       id: 3,
       category: 'فناوری',
       title: 'جاذبه‌ترین استادیوم‌های جام جهانی ۲۰۲۴؛ سفره‌هایی شباهت زیادی به برج‌های...',
-      image: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600&auto=format&fit=crop',
+      image: '/1.webp',
       author: 'حامد صادقی',
       date: '۱۴۰۳/۰۵/۰۸',
       readTime: '۴ دقیقه'
@@ -40,7 +40,7 @@ export default function BlogSlider() {
       id: 4,
       category: 'فناوری',
       title: 'بهترین گوشی‌های موبایل بازار ایران (خرداد ۱۴۰۳) مناسب همه سنین و بودجه‌ها',
-      image: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?q=80&w=600&auto=format&fit=crop',
+      image: '/1.webp',
       author: 'حامد صادقی',
       date: '۱۴۰۳/۰۵/۰۵',
       readTime: '۱۰ دقیقه'
@@ -49,7 +49,7 @@ export default function BlogSlider() {
       id: 5,
       category: 'فناوری',
       title: 'راهنمای خرید لپ‌تاپ برای کاربران گرافیکی و خرید مناسب برای رندرگیری',
-      image: 'https://images.unsplash.com/photo-1603302576837-37561b2e2302?q=80&w=600&auto=format&fit=crop',
+      image: '/1.webp',
       author: 'حامد صادقی',
       date: '۱۴۰۳/۰۵/۰۱',
       readTime: '۷ دقیقه'
@@ -97,7 +97,7 @@ export default function BlogSlider() {
                   <img 
                     src={article.image} 
                     alt={article.title} 
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-110" 
+                    className="w-full h-full object-contain transition-transform duration-500 group-hover/card:scale-110" 
                   />
                   {/* برچسب دسته بندی */}
                   <span className="absolute bottom-3 right-3 bg-[#22c55e] text-white text-[10px] px-2.5 py-1 rounded-full font-medium shadow-sm">

@@ -4,7 +4,7 @@ import Footer from './Footer';
 import Header from './Header';
 const MainLayout = () => {
   return (
-    <div className='lg:w-247.5 mx-auto font-Dana'>
+    <div className=' mx-auto font-Dana'>
         <Header/>
         <Outlet/>
         <Footer/>
