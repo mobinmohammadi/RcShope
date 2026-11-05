@@ -1,6 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
-export default function StoryViewer({ isOpen, onClose, story, onNext, onPrev }) {
+export default function StoryViewer({
+  isOpen,
+  onClose,
+  story,
+  onNext,
+  onPrev,
+}) {
   const [progress, setProgress] = useState(0);
   const [isMuted, setIsMuted] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
@@ -52,10 +58,8 @@ export default function StoryViewer({ isOpen, onClose, story, onNext, onPrev }) 
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKey);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, onClose, onNext, onPrev]);
 
-  // ─── ریست ویدیو با تغییر استوری ───
   useEffect(() => {
     if (!isOpen) return;
     setIsPaused(false);
@@ -114,11 +118,10 @@ export default function StoryViewer({ isOpen, onClose, story, onNext, onPrev }) 
 
   return (
     <div className="fixed inset-0 z-[100] bg-black flex flex-col select-none">
-      {/* ─── هدر + نوار پیشرفت ─── */}
       <div className="relative">
         <div className="absolute top-0 left-0 right-0 h-[3px] bg-white/20 z-20">
           <div
-            className="h-full bg-white"
+            className="absolute top-0 right-0 h-full bg-white"
             style={{ width: `${progress}%`, transition: "width 50ms linear" }}
           />
         </div>
@@ -130,8 +133,18 @@ export default function StoryViewer({ isOpen, onClose, story, onNext, onPrev }) 
               className="p-1 hover:opacity-70"
               aria-label="بستن"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
 
@@ -141,12 +154,32 @@ export default function StoryViewer({ isOpen, onClose, story, onNext, onPrev }) 
                 className="p-1 hover:opacity-70"
                 aria-label="صدا"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5L6 9H2v6h4l5 4V5z" />
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M11 5L6 9H2v6h4l5 4V5z"
+                  />
                   {isMuted ? (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M22 9l-6 6m0-6l6 6" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M22 9l-6 6m0-6l6 6"
+                    />
                   ) : (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.54 8.46a5 5 0 010 7.07M19.07 4.93a10 10 0 010 14.14" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15.54 8.46a5 5 0 010 7.07M19.07 4.93a10 10 0 010 14.14"
+                    />
                   )}
                 </svg>
               </button>
@@ -174,7 +207,8 @@ export default function StoryViewer({ isOpen, onClose, story, onNext, onPrev }) 
         onMouseDown={handlePressStart}
         onMouseUp={(e) => {
           const rect = e.currentTarget.getBoundingClientRect();
-          const side = e.clientX - rect.left < rect.width / 2 ? "left" : "right";
+          const side =
+            e.clientX - rect.left < rect.width / 2 ? "left" : "right";
           handlePressEnd(side);
         }}
         onMouseLeave={handlePressCancel}
@@ -182,7 +216,8 @@ export default function StoryViewer({ isOpen, onClose, story, onNext, onPrev }) 
         onTouchEnd={(e) => {
           const touch = e.changedTouches[0];
           const rect = e.currentTarget.getBoundingClientRect();
-          const side = touch.clientX - rect.left < rect.width / 2 ? "left" : "right";
+          const side =
+            touch.clientX - rect.left < rect.width / 2 ? "left" : "right";
           handlePressEnd(side);
         }}
         onTouchCancel={handlePressCancel}
@@ -215,7 +250,11 @@ export default function StoryViewer({ isOpen, onClose, story, onNext, onPrev }) 
         {isPaused && (
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div className="w-16 h-16 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center">
-              <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="w-8 h-8 text-white"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path d="M6 4h4v16H6zM14 4h4v16h-4z" />
               </svg>
             </div>

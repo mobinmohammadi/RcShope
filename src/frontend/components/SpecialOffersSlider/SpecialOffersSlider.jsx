@@ -110,7 +110,7 @@ export default function SpecialOffersSlider() {
               1024: { slidesPerView: 4, spaceBetween: 12, slidesOffsetBefore: 16 },
               1280: { slidesPerView: 5, spaceBetween: 12, slidesOffsetBefore: 16 },
             }}
-            className="h-full w-full !py-1"
+            className="h-full w-full !py-1 "
           >
             {products.map((product) => (
               <SwiperSlide key={product.id} className="h-auto">
@@ -131,7 +131,7 @@ export default function SpecialOffersSlider() {
                     <img 
                       src={product.image} 
                       alt={product.title} 
-                      className="max-h-full max-w-full object-contain mix-blend-multiply" 
+                      className="max-h-full max-w-full object-contain " 
                       loading="lazy"
                       decoding="async"
                     />

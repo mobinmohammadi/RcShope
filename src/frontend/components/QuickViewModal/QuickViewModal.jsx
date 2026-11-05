@@ -1,42 +1,85 @@
-import React, { useState } from 'react';
-import { 
-  LuHeart, 
-  LuShoppingCart, 
-  LuStar, 
-  LuZap
-} from 'react-icons/lu';
+import React, { useState } from "react";
+import { LuHeart, LuShoppingCart, LuStar, LuZap } from "react-icons/lu";
 
 export default function QuickViewSection() {
   const products = [
-    { id: 1, title: 'گوشی موبایل اپل مدل iPhone Duo دوسیم‌کارت ظرفیت ۲۵۶ گیگابایت', price: '۸۴۰,۰۰۰,۰۰۰', oldPrice: '۹۰۰,۰۰۰,۰۰۰', discount: '۶٪', image: 'https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-15-pro-max-1.jpg' },
-    { id: 2, title: 'گوشی موبایل اپل مدل iPhone 16 Pro Max تک سیم‌کارت', price: '۵۶۷,۳۰۰,۰۰۰', oldPrice: '۶۰۰,۰۰۰,۰۰۰', discount: '۵٪', image: 'https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-16-pro-max-1.jpg' },
-    { id: 3, title: 'دسته بازی پلی استیشن ۵ سونی مدل DualSense CFI-ZCT1W', price: '۱۳,۸۵۰,۰۰۰', oldPrice: '۱۵,۰۰۰,۰۰۰', discount: '۸٪', image: 'https://fdn2.gsmarena.com/vv/pics/sony/sony-dualsense-1.jpg' },
-    { id: 4, title: 'استیکر لپ تاپ پیکسل مدل نقشه ایران سنتی', price: '۶۰,۰۰۰', oldPrice: null, discount: null, image: 'https://via.placeholder.com/150' },
-    { id: 5, title: 'رابط‌کارت‌خوان ام‌آر‌آی مدل MRP', price: '۴۵۰,۰۰۰', oldPrice: null, discount: null, image: 'https://via.placeholder.com/150' },
-    { id: 6, title: 'کیت تمرکزدهنده عدسی multifunctional', price: '۱,۲۰۰,۰۰۰', oldPrice: null, discount: null, image: 'https://via.placeholder.com/150' },
+    {
+      id: 1,
+      title: "گوشی موبایل اپل مدل iPhone Duo دوسیم‌کارت ظرفیت ۲۵۶ گیگابایت",
+      price: "۸۴۰,۰۰۰,۰۰۰",
+      oldPrice: "۹۰۰,۰۰۰,۰۰۰",
+      discount: "۶٪",
+      image:
+        "https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-15-pro-max-1.jpg",
+    },
+    {
+      id: 2,
+      title: "گوشی موبایل اپل مدل iPhone 16 Pro Max تک سیم‌کارت",
+      price: "۵۶۷,۳۰۰,۰۰۰",
+      oldPrice: "۶۰۰,۰۰۰,۰۰۰",
+      discount: "۵٪",
+      image:
+        "https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-16-pro-max-1.jpg",
+    },
+    {
+      id: 3,
+      title: "دسته بازی پلی استیشن ۵ سونی مدل DualSense CFI-ZCT1W",
+      price: "۱۳,۸۵۰,۰۰۰",
+      oldPrice: "۱۵,۰۰۰,۰۰۰",
+      discount: "۸٪",
+      image: "/public/products/1.jpg",
+    },
+    {
+      id: 4,
+      title: "استیکر لپ تاپ پیکسل مدل نقشه ایران سنتی",
+      price: "۶۰,۰۰۰",
+      oldPrice: null,
+      discount: null,
+      image: "/public/products/1.jpg",
+    },
+    {
+      id: 5,
+      title: "رابط‌کارت‌خوان ام‌آر‌آی مدل MRP",
+      price: "۴۵۰,۰۰۰",
+      oldPrice: null,
+      discount: null,
+      image: "/public/products/1.jpg",
+    },
+    {
+      id: 6,
+      title: "کیت تمرکزدهنده عدسی multifunctional",
+      price: "۱,۲۰۰,۰۰۰",
+      oldPrice: null,
+      discount: null,
+      image: "/public/products/1.jpg",
+    },
   ];
 
   const [selectedProduct, setSelectedProduct] = useState(products[2]);
 
   return (
-    <div className="w-full max-w-7xl mx-auto py-6 px-3 sm:px-4 overflow-hidden" dir="rtl">
-      
+    <div
+      className="w-full max-w-7xl mx-auto py-6 px-3 sm:px-4 overflow-hidden"
+      dir="rtl"
+    >
       <div className="border border-gray-200 rounded-2xl p-3 md:p-4 bg-white grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6">
-        
         {/* ================= ۳. ستون چپ: عکس بزرگ (در موبایل به بالا منتقل می‌شود) ================= */}
         {/* در موبایل order-1 و در دسکتاپ order-3 می‌شود */}
         <div className="lg:col-span-3 flex flex-col gap-3 order-1 lg:order-3">
-          
           {/* باکس تایمر */}
           <div className="flex items-center justify-between bg-blue-50/50 border border-blue-100 rounded-xl p-2 px-3">
-             <div className="flex items-center gap-1 text-xs text-blue-700 font-bold">
-                <LuZap className="h-4 w-4 fill-blue-700" />
-                پیشنهاد شگفت‌انگیز
-             </div>
-             <div className="flex gap-1" dir="ltr">
-                <div className="bg-white border border-gray-200 text-gray-700 w-6 h-6 rounded flex items-center justify-center text-[10px] font-bold">۱۷</div>
-                <div className="bg-white border border-gray-200 text-gray-700 w-6 h-6 rounded flex items-center justify-center text-[10px] font-bold">۲۱</div>
-             </div>
+            <div className="flex items-center gap-1 text-xs text-blue-700 font-bold">
+              <LuZap className="h-4 w-4 fill-blue-700" />
+              پیشنهاد شگفت‌انگیز
+            </div>
+            <div className="flex gap-1" dir="ltr">
+              <div className="bg-white border border-gray-200 text-gray-700 w-6 h-6 rounded flex items-center justify-center text-[10px] font-bold">
+                ۱۷
+              </div>
+              <div className="bg-white border border-gray-200 text-gray-700 w-6 h-6 rounded flex items-center justify-center text-[10px] font-bold">
+                ۲۱
+              </div>
+            </div>
           </div>
 
           {/* عکس بزرگ */}
@@ -46,11 +89,11 @@ export default function QuickViewSection() {
                 {selectedProduct.discount} تخفیف
               </span>
             )}
-            
-            <img 
-              src={selectedProduct.image} 
-              alt={selectedProduct.title} 
-              className="max-h-full max-w-full object-contain mix-blend-multiply transition-transform duration-300 ease-in-out group-hover:scale-110 cursor-pointer" 
+
+            <img
+              src={selectedProduct.image}
+              alt={selectedProduct.title}
+              className="max-h-full max-w-full object-contain mix-blend-multiply transition-transform duration-300 ease-in-out group-hover:scale-110 cursor-pointer"
             />
           </div>
 
@@ -71,26 +114,28 @@ export default function QuickViewSection() {
             const isSelected = selectedProduct.id === item.id;
 
             return (
-              <div 
+              <div
                 key={item.id}
                 onClick={() => setSelectedProduct(item)}
                 className={`flex items-center gap-3 p-2 md:p-3 rounded-xl cursor-pointer transition-all duration-200 border-2 ${
-                  isSelected 
-                    ? 'border-[#0a3187] bg-blue-50/50 shadow-sm' 
-                    : 'border-transparent hover:bg-gray-50'
+                  isSelected
+                    ? "border-[#0a3187] bg-blue-50/50 shadow-sm"
+                    : "border-transparent hover:bg-gray-50"
                 }`}
               >
                 <div className="w-12 h-12 md:w-16 md:h-16 shrink-0 flex items-center justify-center bg-white rounded-lg p-1 border border-gray-100">
-                  <img 
-                    src={item.image} 
-                    alt={item.title} 
-                    className="max-h-full max-w-full object-contain mix-blend-multiply" 
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="max-h-full max-w-full object-contain mix-blend-multiply"
                   />
                 </div>
-                
-                <p className={`text-[11px] md:text-xs leading-relaxed line-clamp-2 ${
-                  isSelected ? 'text-[#0a3187] font-bold' : 'text-gray-600'
-                }`}>
+
+                <p
+                  className={`text-[11px] md:text-xs leading-relaxed line-clamp-2 ${
+                    isSelected ? "text-[#0a3187] font-bold" : "text-gray-600"
+                  }`}
+                >
                   {item.title}
                 </p>
               </div>
@@ -101,7 +146,6 @@ export default function QuickViewSection() {
         {/* ================= ۲. ستون وسط: جزئیات محصول ================= */}
         {/* در موبایل order-3 و در دسکتاپ order-2 می‌شود */}
         <div className="lg:col-span-5 flex flex-col justify-between order-3 lg:order-2">
-          
           <div>
             {/* هدر جزئیات */}
             <div className="flex items-start justify-between mb-4 md:mb-6">
@@ -112,10 +156,15 @@ export default function QuickViewSection() {
                 <div className="flex items-center gap-1">
                   <div className="flex">
                     {[1, 2, 3, 4, 5].map((star) => (
-                      <LuStar key={star} className={`h-3 w-3 md:h-4 md:w-4 ${star <= 4 ? 'text-yellow-400 fill-yellow-400' : 'text-gray-200'}`} />
+                      <LuStar
+                        key={star}
+                        className={`h-3 w-3 md:h-4 md:w-4 ${star <= 4 ? "text-yellow-400 fill-yellow-400" : "text-gray-200"}`}
+                      />
                     ))}
                   </div>
-                  <span className="text-[10px] md:text-xs text-gray-400 mr-2">(۴ نظر)</span>
+                  <span className="text-[10px] md:text-xs text-gray-400 mr-2">
+                    (۴ نظر)
+                  </span>
                 </div>
               </div>
             </div>
@@ -134,7 +183,9 @@ export default function QuickViewSection() {
                 )}
                 <div className="flex items-center gap-1 text-gray-800 font-bold text-lg md:text-xl">
                   <span>{selectedProduct.price}</span>
-                  <span className="text-[10px] md:text-xs text-gray-500 font-normal">تومان</span>
+                  <span className="text-[10px] md:text-xs text-gray-500 font-normal">
+                    تومان
+                  </span>
                 </div>
               </div>
             </div>
@@ -169,16 +220,19 @@ export default function QuickViewSection() {
             </button>
           </div>
         </div>
-
       </div>
-      
+
       {/* اسکرول بار سفارشی */}
-      <style dangerouslySetInnerHTML={{__html: `
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
         .custom-scrollbar::-webkit-scrollbar { width: 4px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-      `}} />
+      `,
+        }}
+      />
     </div>
   );
 }

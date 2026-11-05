@@ -20,7 +20,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 text-center sm:text-right gap-8 lg:gap-12">
           
           {/* ستون ۱: لوگو و توضیحات */}
-          <div className="flex flex-col">
+          <div className="flex flex-col px-5">
             <div className="mb-6">
               <h1 className="text-3xl font-black text-[#1b3b6f] tracking-tighter">
                 Rc Shope

@@ -12,7 +12,6 @@ const Home = () => {
       <CategorySlider />
       <HeroBanner />
       <CategorySlider />
-      <SpecialOffersSlider />
       <MobilePhonesSlider />
       <BannerGrid />
       <QuickViewSection />
