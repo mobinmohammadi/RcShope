@@ -68,7 +68,6 @@ const ProductModal = ({ isOpen, onClose, product }) => {
 
           <hr className="border-gray-100 mb-6" />
 
-          {/* بخش قیمت */}
           <div className="flex justify-between items-end mb-8">
             <span className="text-gray-700 font-medium">قیمت محصول</span>
             <div className="flex flex-col items-end">
