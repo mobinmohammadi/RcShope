@@ -67,14 +67,14 @@ export default function StoriesSection() {
 
   return (
     <>
-      <div className="w-full container p-8 py-4">
+      <div className=" md:p-8 py-4 ">
         <Swiper
           modules={[FreeMode]}
           freeMode
           slidesPerView="auto"
           spaceBetween={12}
           grabCursor
-          dir="rtl"
+
           className="px-3 sm:px-4"
           breakpoints={{
             640: { spaceBetween: 16 },
@@ -88,7 +88,7 @@ export default function StoriesSection() {
                 className="group flex flex-col mt-3 items-center shrink-0 focus:outline-none"
               >
                 <div className="rounded-full p-[2.5px] bg-gradient-to-tr from-[var(--color-primary)] to-[var(--color-primary-400)] transition-transform duration-300 group-hover:scale-105">
-                  <div className="w-25 h-25 md:w-25 md:h-25 ring-3 ring-sky-600 sm:w-[68px] sm:h-[68px] md:w-21  md:h-21 cursor-pointer rounded-full bg-white dark:bg-gray-900 p-[2.5px]">
+                  <div className="w-15 h-15 md:w-25 md:h-25 ring-3 ring-sky-600 sm:w-[68px] sm:h-[68px]  cursor-pointer rounded-full bg-white dark:bg-gray-900 p-[2.5px]">
                     <img
                       src={item.poster || item.src}
                       alt={item.title}

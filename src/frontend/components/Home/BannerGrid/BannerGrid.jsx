@@ -15,7 +15,7 @@ export default function BannerGrid() {
   ];
 
   return (
-    <div className="max-w-screen mx-5 relative my-4 grid gap-4 px-4 grid-cols-1 lg:grid-cols-2">
+    <div className="max-w-full mx-auto relative my-4 grid gap-4 px-4 grid-cols-1 lg:grid-cols-2">
       {banners.map((banner) => (
         <div
           key={banner.id}

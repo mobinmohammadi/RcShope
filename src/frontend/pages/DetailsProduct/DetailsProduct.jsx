@@ -1,16 +1,13 @@
 import BreadCrumbBasic from "../../../utils/BreadCrumbBasic";
+import RelatedProducts from "../../components/detailsProduct/RelatedProducts/RelatedProducts";
 
 export default function DetailsProduct() {
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 container mx-auto" >
       {/* <BreadCrumbBasic /> */}
       <div className="w-full max-w-7xl mx-auto px-4 py-8 font-Dana text-gray-800 bg-white">
-        {/* ================= هدر: عنوان و اشتراک‌گذاری ================= */}
 
-        {/* ================= بدنه اصلی (گرید دو ستونه) ================= */}
-        <div className="grid sm:flex grid-cols-1  justify-between lg:grid-cols-12 sm:gap-0 gap-8">
-          {/* ---------------- ستون راست: گالری تصاویر ---------------- */}
-          {/* در دسکتاپ order-last باعث می‌شود عکس سمت راست بیاید */}
+        <div className="grid sm:flex grid-cols-1 flex-row-reverse  justify-between lg:grid-cols-12 sm:gap-0 gap-8">
           <div className="lg:col-span-4 lg:order-last">
             <div className="sticky top-4">
               {/* تصویر اصلی */}
@@ -20,7 +17,6 @@ export default function DetailsProduct() {
                   alt="لپ تاپ اچ پی"
                   className="w-full h-auto object-contain rounded-xl max-h-[300px]"
                 />
-                {/* آیکون‌های شناور روی عکس */}
                 <div className="absolute top-4 right-4 flex flex-col gap-3 bg-white p-2 rounded-full shadow-sm border border-gray-100">
                   <button className="text-gray-400 hover:text-red-500 transition">
                     <svg
@@ -87,14 +83,14 @@ export default function DetailsProduct() {
                 </div>
                 <div className="w-20 h-16 border border-gray-200 rounded-lg p-1 cursor-pointer hover:border-blue-400 bg-white">
                   <img
-                    src="/3.webp"
+                    src="/2.png"
                     alt="thumb2"
                     className="w-full h-full object-cover rounded"
                   />
                 </div>
                 <div className="w-20 h-16 border border-gray-200 rounded-lg p-1 cursor-pointer hover:border-blue-400 bg-white">
                   <img
-                    src="/3.webp"
+                    src="/products/2.webp"
                     alt="thumb3"
                     className="w-full h-full object-cover rounded"
                   />
@@ -112,7 +108,7 @@ export default function DetailsProduct() {
 
           {/* ---------------- ستون چپ: خدمات و خرید ---------------- */}
           <div className="w-full">
-            <div className="flex flex-col pb-4 pr-10 gap-4 items-end order-1 md:order-2 shrink-0 w-full md:w-auto">
+            <div className="flex flex-col pb-4 pr-6 text-right items-start gap-4 items-end order-1 md:order-2 shrink-0 w-full md:w-auto">
               <div className=" flex-col gap-2 flex">
                 <h1 className="text-lg md:text-[17px] font-bold text-gray-800 leading-relaxed">
                   لپ تاپ اچ پی مدل Victus 15 FB3093DX RV VF4A5HS 16GB 512GB RTX
@@ -123,11 +119,126 @@ export default function DetailsProduct() {
               {/* دسته بندی */}
             </div>
 
-            <div className="lg:col-span-7 space-y-6 sm:flex sm:w-full justify-around">
+            <div className="lg:col-span-7   space-y-6 sm:flex sm:w-full justify-around">
               {/* باکس ویژگی‌های محصول */}
 
               {/* باکس قیمت و خرید */}
-              <div className="border w-[260px] h-80 border-gray-200 rounded-2xl p-5 bg-white shadow-sm">
+             
+              <div className="w-[60%] flex flex-col">
+                <div className="flex flex-col md:flex-row items-start justify-between gap-4 ">
+                  {/* عنوان محصول */}
+
+                  {/* دسته بندی و رنگ */}
+                </div>
+                <div className="w-full gap-3 text-right border-b border-b-slate-200 pb-4 flex flex-col items-end justify-start ">
+                  <div class="text-[10px] text-slate-500 text-right border-b border-b-slate-200 w-full pb-4">
+                    Apple iPhone 18 Pro Max Dual eSIM 256GB RAM 12GB Mobile
+                    Phone - Not Activated
+                  </div>
+                  <div className="flex items-center  gap-2 text-sm text-gray-500">
+                    <div className="flex gap-1">
+                      <span className="bg-gray-100 px-3 py-1 rounded-md text-gray-600 text-xs">
+                        لپ‌تاپ
+                      </span>
+                      <span className="bg-gray-100 px-3 py-1 rounded-md text-gray-600 text-xs">
+                        hp لپ‌تاپ
+                      </span>
+                    </div>
+
+                    <span> : دسته‌بندی‌ها</span>
+                    <svg
+                      className="w-5 h-5 text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="1.5"
+                        d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+                      ></path>
+                    </svg>
+                  </div>
+
+                  {/* رنگ بندی */}
+                  <div className="flex items-center gap-3 mt-1 ">
+                    <div className="w-7 h-7 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center p-1">
+                      <div className="w-full h-full rounded-full bg-[#d4d4d4]"></div>
+                    </div>
+                    <button className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center bg-white shadow-sm">
+                      <svg
+                        className="w-5 h-5 text-gray-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M5 13l4 4L19 7"
+                        ></path>
+                      </svg>
+                    </button>
+                    <span className="text-sm text-gray-700">
+                      رنگ‌بندی: نقره‌ای
+                    </span>
+                  </div>
+                </div>
+                <div className="w-full">
+                  <div className="mb-4 text-right pt-6 pb-2">
+                    <h2 className="text-sm font-bold text-gray-800">
+                      ویژگی‌های محصول
+                    </h2>
+                  </div>
+                  <div className="grid grid-cols-3 w-full gap-3">
+                    {[1, 2, 3, 4, 5, 6].map((item) => (
+                      <div className="bg-[#f4f7f9] px-4 py-2 text-right rounded-xl  flex flex-col items-end justify-center gap-1">
+                        <span className="text-xs text-gray-400">رنگ‌بندی</span>
+                        <span className="text-[10px] font-bold text-gray-700">
+                          نقره‌ای
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex justify-center items-center mt-6 gap-2">
+                    <span className="w-[25%] bg-slate-200 h-0.5"></span>
+                    <button className="border border-slate-300 text-zinc-700 rounded-full px-6 py-1 text-center text-[10px] font-bold flex items-center gap-0.5 hover:bg-blue-50 transition">
+                      <svg
+                        className="w-4.5 h-4.5 pb-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M15 19l-7-7 7-7"
+                        ></path>
+                      </svg>
+                      <span>مشاهده همه ویژگی‌ها</span>
+                    </button>
+                    <span className="w-[25%] bg-slate-200 h-0.5"></span>
+                  </div>
+                </div>
+
+                {/* باکس خدمات محصول */}
+                <div className="border text-right text-[10px] mt-5 max-w-full border-sky-500 rounded-2xl p-4 bg-white">
+                  <div className=" pb-2    ">
+                    <span className="pb-2 font-bold text-xs ">پیکربندی</span>
+                  </div>
+                  <span className="text-slate-500 ">
+                    امکان برگشت کالا در گروه موبایل با دلیل "انصراف از خرید"
+                    تنها در صورتی مورد قبول است که پلمب کالا باز نشده باشد. تمام
+                    گوشی‌های دیجی‌کالا ضمانت رجیستری دارند. در صورت وجود مشکل
+                    رجیستری، می‌توانید بعد از مهلت قانونی ۳۰ روزه، گوشی
+                    خریداری‌شده را مرجوع .کنید
+                  </span>
+                </div>
+              </div>
+               <div className="border w-[260px] h-80 border-gray-200 rounded-2xl p-5 bg-white shadow-sm">
                 {/* کد کالا و برند */}
 
                 <div className="flex items-end flex-col justify-between text-xs text-gray-500 mb-4 pb-4 border-b border-gray-100">
@@ -248,124 +359,12 @@ export default function DetailsProduct() {
                   افزودن به سبد خرید
                 </button>
               </div>
-              <div className="w-[60%] flex flex-col">
-                <div className="flex flex-col md:flex-row items-start justify-between gap-4 ">
-                  {/* عنوان محصول */}
-
-                  {/* دسته بندی و رنگ */}
-                </div>
-                <div className="w-full gap-3 text-right border-b border-b-slate-200 pb-4 flex flex-col items-end justify-start ">
-                  <div class="text-[10px] text-slate-500 text-right border-b border-b-slate-200 w-full pb-4">
-                    Apple iPhone 18 Pro Max Dual eSIM 256GB RAM 12GB Mobile
-                    Phone - Not Activated
-                  </div>
-                  <div className="flex items-center  gap-2 text-sm text-gray-500">
-                    <div className="flex gap-1">
-                      <span className="bg-gray-100 px-3 py-1 rounded-md text-gray-600 text-xs">
-                        لپ‌تاپ
-                      </span>
-                      <span className="bg-gray-100 px-3 py-1 rounded-md text-gray-600 text-xs">
-                        hp لپ‌تاپ
-                      </span>
-                    </div>
-
-                    <span> : دسته‌بندی‌ها</span>
-                    <svg
-                      className="w-5 h-5 text-gray-400"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="1.5"
-                        d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
-                      ></path>
-                    </svg>
-                  </div>
-
-                  {/* رنگ بندی */}
-                  <div className="flex items-center gap-3 mt-1 ">
-                    <div className="w-7 h-7 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center p-1">
-                      <div className="w-full h-full rounded-full bg-[#d4d4d4]"></div>
-                    </div>
-                    <button className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center bg-white shadow-sm">
-                      <svg
-                        className="w-5 h-5 text-gray-600"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M5 13l4 4L19 7"
-                        ></path>
-                      </svg>
-                    </button>
-                    <span className="text-sm text-gray-700">
-                      رنگ‌بندی: نقره‌ای
-                    </span>
-                  </div>
-                </div>
-                <div className="w-full">
-                  <div className="mb-4 text-right pt-6 pb-2">
-                    <h2 className="text-sm font-bold text-gray-800">
-                      ویژگی‌های محصول
-                    </h2>
-                  </div>
-                  <div className="grid grid-cols-3 w-full gap-3">
-                    {[1, 2, 3, 4, 5, 6].map((item) => (
-                      <div className="bg-[#f4f7f9] px-4 py-2 text-right rounded-xl  flex flex-col items-end justify-center gap-1">
-                        <span className="text-xs text-gray-400">رنگ‌بندی</span>
-                        <span className="text-[10px] font-bold text-gray-700">
-                          نقره‌ای
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="flex justify-center items-center mt-6 gap-2">
-                    <span className="w-[25%] bg-slate-200 h-0.5"></span>
-                    <button className="border border-slate-300 text-zinc-700 rounded-full px-6 py-1 text-center text-[10px] font-bold flex items-center gap-0.5 hover:bg-blue-50 transition">
-                      <svg
-                        className="w-4.5 h-4.5 pb-1"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M15 19l-7-7 7-7"
-                        ></path>
-                      </svg>
-                      <span>مشاهده همه ویژگی‌ها</span>
-                    </button>
-                    <span className="w-[25%] bg-slate-200 h-0.5"></span>
-                  </div>
-                </div>
-
-                {/* باکس خدمات محصول */}
-                <div className="border text-right text-[10px] mt-5 max-w-full border-sky-500 rounded-2xl p-4 bg-white">
-                  <div className=" pb-2    ">
-                    <span className="pb-2 font-bold text-xs ">پیکربندی</span>
-                  </div>
-                  <span className="text-slate-500 ">
-                    امکان برگشت کالا در گروه موبایل با دلیل "انصراف از خرید"
-                    تنها در صورتی مورد قبول است که پلمب کالا باز نشده باشد. تمام
-                    گوشی‌های دیجی‌کالا ضمانت رجیستری دارند. در صورت وجود مشکل
-                    رجیستری، می‌توانید بعد از مهلت قانونی ۳۰ روزه، گوشی
-                    خریداری‌شده را مرجوع .کنید
-                  </span>
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </div>
+              <RelatedProducts/>
+
     </div>
   );
 }

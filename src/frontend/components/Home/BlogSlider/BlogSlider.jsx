@@ -57,7 +57,7 @@ export default function BlogSlider() {
   ];
 
   return (
-    <div className="w-full max-w-7xl mx-auto py-8 px-4" dir="rtl">
+    <div className="w-full mx-auto py-8 px-4" dir="rtl">
       
       {/* هدر بخش (عنوان و لینک مشاهده همه) */}
       <div className="flex items-center justify-between mb-6">

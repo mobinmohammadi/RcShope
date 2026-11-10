@@ -37,7 +37,7 @@ export default function HeroSlider() {
   const swiperRef = useRef(null);
 
   return (
-    <div className="relative  w-full mx-auto px-2 sm:px-0">
+    <div className="relative  w-full mx-auto sm:px-2 sm:px-0">
       <Swiper
         onSwiper={(swiper) => (swiperRef.current = swiper)}
         modules={[Autoplay, Pagination]}

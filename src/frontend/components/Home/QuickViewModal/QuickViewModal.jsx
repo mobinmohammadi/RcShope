@@ -59,7 +59,7 @@ export default function QuickViewSection() {
 
   return (
     <div
-      className="w-full max-w-7xl mx-auto py-6 px-3 sm:px-4 overflow-hidden"
+      className="w-full mx-auto py-6 px-3 sm:px-4 overflow-hidden"
       dir="rtl"
     >
       <div className="border border-gray-200 rounded-2xl p-3 md:p-4 bg-white grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6">

@@ -10,7 +10,7 @@ import "swiper/css/navigation";
 export default function SpecialOffersSlider({ products }) {
   return (
 <div
-  className="w-full rounded-lg max-w-7xl mx-auto py-4 sm:py-6 px-2 sm:px-4 overflow-hidden"
+  className="w-full rounded-lg mx-auto py-4 sm:py-6 px-2 sm:px-4 overflow-hidden"
   dir="rtl"
 >
   <div className="relative border-[1.5px] bg-[#CD003E] border-[#ef4056] rounded-2xl p-2 sm:p-3 md:p-4 flex flex-row items-stretch gap-2 sm:gap-3">
@@ -47,7 +47,7 @@ export default function SpecialOffersSlider({ products }) {
     </div>
 
     {/* ================= بخش اسلایدر محصولات ================= */}
-    <div className="flex-1 min-w-0 relative overflow-hidden group">
+    <div className="flex-1 min-w-0 relative overflow-hidden">
       <Swiper
         modules={[Navigation]}
         spaceBetween={6}

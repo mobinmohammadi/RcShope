@@ -7,7 +7,7 @@ import Footer from "./Footer";
 
 const MainLayout = () => {
   return (
-    <div className="mx-auto font-Dana">
+    <div className="mx-auto font-Dana " dir="rtl">
       <Header />
 
       <Outlet />
