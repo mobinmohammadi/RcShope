@@ -11,7 +11,7 @@ export const user_register = createAsyncThunk(
       const { data } = await api.post("/user-register", info, {
         withCredentials: true,
       });
-        localStorage.setItem("customerToken", data.token);
+      localStorage.setItem("customerToken", data.token);
 
       console.log("data ==> ", data);
       return fulfillWithValue(data);
@@ -20,8 +20,6 @@ export const user_register = createAsyncThunk(
     }
   },
 );
-
-
 
 export const user_login = createAsyncThunk(
   "auth/user_login",
@@ -32,7 +30,7 @@ export const user_login = createAsyncThunk(
       const { data } = await api.post("/user-login", info, {
         withCredentials: true,
       });
-        localStorage.setItem("customerToken", data.token);
+      localStorage.setItem("customerToken", data.token);
 
       console.log("data ==> ", data);
       return fulfillWithValue(data);
@@ -41,7 +39,6 @@ export const user_login = createAsyncThunk(
     }
   },
 );
-
 
 export const get_user_info = createAsyncThunk(
   "auth/get_user_info",
@@ -58,25 +55,17 @@ export const get_user_info = createAsyncThunk(
   },
 );
 
-const returnRole = (token) => {
+const deCodeToken = (token) => {
   try {
     if (token) {
-      const deCodeToken = jwtDecode(token);
-      const expireTime = new Date(deCodeToken.exp * 1000);
-      console.log(deCodeToken);
-
-      if (new Date() > expireTime) {
-        localStorage.removeItem("customerToken");
-        return "";
-      } else {
-        return deCodeToken.role || "";
-      }
+      const userData = jwtDecode(token);
+      return userData;
     } else {
       return "";
     }
   } catch {
     localStorage.removeItem("customerToken");
-    return "";
+    return;
   }
 };
 
@@ -87,8 +76,7 @@ export const authReducer = createSlice({
     errorMessage: "",
     loader: false,
     token: localStorage.getItem("customerToken"),
-    role: returnRole(localStorage.getItem('customerToken')),
-    userInfo: "",
+    userInfo: deCodeToken(localStorage.getItem("customerToken")),
     // token: localStorage.getItem("accessToken"),
   },
   reducers: {
@@ -105,19 +93,15 @@ export const authReducer = createSlice({
       .addCase(user_register.fulfilled, (state, { payload }) => {
         state.loader = false;
         state.successMessage = payload.message;
-        state.userInfo = payload.user
+        state.userInfo = payload.user;
         state.token = payload.token;
         console.log(payload);
-    
       })
       .addCase(user_register.rejected, (state, { payload }) => {
         state.loader = false;
         state.errorMessage = payload.error;
         console.log(payload);
-        
-
       })
-
 
       .addCase(user_login.pending, (state) => {
         state.loader = true;
@@ -125,39 +109,29 @@ export const authReducer = createSlice({
       .addCase(user_login.fulfilled, (state, { payload }) => {
         state.loader = false;
         state.successMessage = payload.message;
-        state.userInfo = payload.foundUser
         state.token = payload.token;
         console.log(payload);
-    
       })
       .addCase(user_login.rejected, (state, { payload }) => {
         state.loader = false;
         state.errorMessage = payload.error;
         console.log(payload);
-        
-
       })
-
 
       .addCase(get_user_info.pending, (state) => {
         state.loader = true;
       })
       .addCase(get_user_info.fulfilled, (state, { payload }) => {
         state.loader = false;
-        state.userInfo = payload.userInfo
+        state.userInfo = payload.userInfo;
         console.log(payload);
-    
       })
       .addCase(get_user_info.rejected, (state, { payload }) => {
         state.loader = false;
         console.log(payload);
-        
-
-      })
+      });
   },
 });
-
-
 
 export const { messageClear } = authReducer.actions;
 export default authReducer.reducer;

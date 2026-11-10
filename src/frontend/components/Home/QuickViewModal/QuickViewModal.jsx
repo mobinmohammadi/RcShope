@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { LuHeart, LuShoppingCart, LuStar, LuZap } from "react-icons/lu";
+import ProductModal from "../../../../utils/ModalAddToBasket";
 
 export default function QuickViewSection() {
   const products = [
@@ -56,6 +57,7 @@ export default function QuickViewSection() {
   ];
 
   const [selectedProduct, setSelectedProduct] = useState(products[2]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div
@@ -63,10 +65,7 @@ export default function QuickViewSection() {
       dir="rtl"
     >
       <div className="border border-gray-200 rounded-2xl p-3 md:p-4 bg-white grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6">
-        {/* ================= ۳. ستون چپ: عکس بزرگ (در موبایل به بالا منتقل می‌شود) ================= */}
-        {/* در موبایل order-1 و در دسکتاپ order-3 می‌شود */}
         <div className="lg:col-span-3 flex flex-col gap-3 order-1 lg:order-3">
-          {/* باکس تایمر */}
           <div className="flex items-center justify-between bg-blue-50/50 border border-blue-100 rounded-xl p-2 px-3">
             <div className="flex items-center gap-1 text-xs text-blue-700 font-bold">
               <LuZap className="h-4 w-4 fill-blue-700" />
@@ -82,7 +81,6 @@ export default function QuickViewSection() {
             </div>
           </div>
 
-          {/* عکس بزرگ */}
           <div className="bg-white border border-gray-100 rounded-2xl p-4 flex items-center justify-center relative h-[200px] md:h-[250px] shadow-sm overflow-hidden group">
             {selectedProduct.discount && (
               <span className="absolute top-3 right-3 bg-[#ef4056] text-white text-[11px] px-2 py-1 rounded-md font-bold z-10">
@@ -97,7 +95,6 @@ export default function QuickViewSection() {
             />
           </div>
 
-          {/* راهنمای خرید */}
           <div className="hidden lg:flex items-center justify-between text-[11px] text-gray-500 bg-gray-50 rounded-xl p-3">
             <span>راهنمای خرید امن</span>
             <div className="flex gap-2">
@@ -107,8 +104,6 @@ export default function QuickViewSection() {
           </div>
         </div>
 
-        {/* ================= ۱. ستون راست: لیست محصولات ================= */}
-        {/* در موبایل order-2 و در دسکتاپ order-1 می‌شود */}
         <div className="lg:col-span-4 flex flex-col gap-2 order-2 lg:order-1 lg:border-l lg:border-gray-100 lg:pl-6 max-h-[250px] lg:max-h-[500px] overflow-y-auto custom-scrollbar">
           {products.map((item) => {
             const isSelected = selectedProduct.id === item.id;
@@ -143,11 +138,8 @@ export default function QuickViewSection() {
           })}
         </div>
 
-        {/* ================= ۲. ستون وسط: جزئیات محصول ================= */}
-        {/* در موبایل order-3 و در دسکتاپ order-2 می‌شود */}
         <div className="lg:col-span-5 flex flex-col justify-between order-3 lg:order-2">
           <div>
-            {/* هدر جزئیات */}
             <div className="flex items-start justify-between mb-4 md:mb-6">
               <div>
                 <h2 className="text-sm md:text-lg font-bold text-gray-800 mb-2 lg:min-h-[56px]">
@@ -169,7 +161,6 @@ export default function QuickViewSection() {
               </div>
             </div>
 
-            {/* کادر قیمت */}
             <div className="bg-gray-50 rounded-xl p-3 md:p-4 mb-4 md:mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border border-gray-100">
               <div className="flex items-center gap-1.5 text-[10px] md:text-xs text-green-600 font-medium bg-green-50 px-2 md:px-3 py-1 md:py-1.5 rounded-lg">
                 <LuZap className="h-3 w-3 md:h-4 md:w-4" />
@@ -190,7 +181,6 @@ export default function QuickViewSection() {
               </div>
             </div>
 
-            {/* ویژگی‌های محصول */}
             <div className="mb-4 md:mb-6 hidden sm:block">
               <h3 className="text-xs md:text-sm font-bold text-gray-700 mb-2 md:mb-3 flex items-center gap-2">
                 <span className="w-1 h-3 md:h-4 bg-[#0a3187] rounded-full inline-block"></span>
@@ -209,9 +199,11 @@ export default function QuickViewSection() {
             </div>
           </div>
 
-          {/* دکمه‌های عملیات */}
           <div className="flex items-center gap-2 md:gap-3 mt-2 md:mt-4">
-            <button className="flex-1 bg-[#0a3187] text-white py-2.5 md:py-3.5 rounded-xl hover:bg-blue-800 transition-colors flex items-center justify-center gap-2 text-xs md:text-sm font-bold shadow-md shadow-blue-900/20">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="flex-1 bg-[#0a3187] text-white py-2.5 md:py-3.5 rounded-xl hover:bg-blue-800 transition-colors flex items-center justify-center gap-2 text-xs md:text-sm font-bold shadow-md shadow-blue-900/20"
+            >
               <LuShoppingCart className="h-4 w-4 md:h-5 md:w-5" />
               مشاهده و خرید محصول
             </button>
@@ -222,7 +214,6 @@ export default function QuickViewSection() {
         </div>
       </div>
 
-      {/* اسکرول بار سفارشی */}
       <style
         dangerouslySetInnerHTML={{
           __html: `
@@ -232,6 +223,12 @@ export default function QuickViewSection() {
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
       `,
         }}
+      />
+
+      <ProductModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        product={selectedProduct}
       />
     </div>
   );

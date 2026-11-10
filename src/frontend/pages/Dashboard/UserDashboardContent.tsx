@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const BellIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-gray-500">
@@ -31,8 +32,10 @@ const BoxIcon = () => (
 );
 
 const UserDashboardContent: React.FC = () => {
+      const { userInfo } = useSelector((state) => state.auth);
+
   return (
-    <div className="w-full flex flex-col gap-4 font-sans text-sm" dir="rtl">
+    <div className="w-full flex flex-col gap-4 text-sm" dir="rtl">
       
       <div className="bg-white rounded-2xl border border-gray-100 p-4 flex items-center justify-between shadow-sm">
         <div className="flex items-center gap-3">
@@ -73,15 +76,15 @@ const UserDashboardContent: React.FC = () => {
         <div className="flex-1 flex justify-around items-center px-4 divide-x divide-x-reverse divide-gray-200">
           <div className="flex flex-col items-center gap-1 px-4">
             <span className="text-[11px] text-gray-400">نام و نام خانوادگی</span>
-            <span className="text-xs font-bold text-gray-700">demo</span>
+            <span className="text-xs font-bold text-gray-700">{userInfo.fullName}</span>
           </div>
           <div className="flex flex-col items-center gap-1 px-4">
             <span className="text-[11px] text-gray-400">شماره موبایل</span>
-            <span className="text-xs font-bold text-gray-700 font-mono">۰۹۱۲۰۰۰۰۰۰۰</span>
+            <span className="text-xs font-bold text-gray-700 font-mono">{userInfo.phone}</span>
           </div>
           <div className="flex flex-col items-center gap-1 px-4">
             <span className="text-[11px] text-gray-400">پست الکترونیک</span>
-            <span className="text-xs font-bold text-gray-700 font-mono">demo@pixaa.ir</span>
+            <span className="text-xs font-bold text-gray-700 font-mono">{userInfo.email}</span>
           </div>
         </div>
 

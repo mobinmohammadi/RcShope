@@ -71,15 +71,15 @@ const UserSidebar = () => {
     console.log(userInfo);
   }, []);
 
+
   return (
-    <div className="w-full bg-white rounded-2xl shadow-[0_4px_20px_rgb(0,0,0,0.05)] border border-gray-100 p-6 flex flex-col items-center">
+    <div className="w-full bg-white rounded-2xl font-Dana shadow-[0_4px_20px_rgb(0,0,0,0.05)] border border-gray-100 p-6 flex flex-col items-center">
       <div className="flex flex-col items-center mb-8">
-        <div className="w-20 h-20 rounded-full bg-gray-200 flex items-center justify-center mb-3">
-          <span className="text-2xl font-bold text-gray-800">D</span>
+        <div className="w-20 h-20 rounded-full bg-gray-200 overflow-hidden pt-4 flex items-center justify-center mb-3">
+        <img src={userInfo.image} className="rounded-full font-bold  text-gray-800 mb-1"/>
         </div>
-        <h3 className="text-lg font-bold text-gray-800 mb-1">demo</h3>
-        <p className="text-xs text-gray-500 font-mono" dir="ltr">
-          demo@pixaa.ir
+        <p className="text-xs text-gray-500 font-mono">
+          {userInfo.fullName}
         </p>
       </div>
 

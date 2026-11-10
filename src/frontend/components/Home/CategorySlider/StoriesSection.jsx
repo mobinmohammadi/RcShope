@@ -51,7 +51,6 @@ const stories = [
 
 export default function StoriesSection() {
   const [activeIndex, setActiveIndex] = useState(null);
-
   const openStory = (i) => setActiveIndex(i);
   const closeStory = () => setActiveIndex(null);
 

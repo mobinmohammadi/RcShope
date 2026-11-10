@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import ProductModal from "../../../../utils/ModalAddToBasket";
 
-// داده‌های نمونه
 const products = [
   { id: 1, title: "هارد اکسترنال ۱ ترابایت ای دیتا مدل HDV6G", price: "۱۲,۳۵۰,۰۰۰", image: "/2.png" },
   { id: 2, title: "دسته بازی پلی استیشن ۵ سونی مدل CFI-ZCT1W سری DualSense", price: "۱۳,۸۶۰,۰۰۰", image: "/2.png" },
@@ -15,7 +15,6 @@ const products = [
   { id: 11, title: "اپل واچ مدل SE Gen2 2024 سایز ۴۴ میلی متری", price: "۳۱,۵۵۴,۰۰۰", image: "/2.png" },
   { id: 12, title: "استیکر لپ تاپ پیکسل مدل نقشه ایران سنتی", price: "۶۰,۰۰۰", image: "/2.png" },
 ];
-
 
 const FireIcon = () => {
   return (
@@ -56,12 +55,10 @@ const FireIcon = () => {
         `}
       </style>
 
-      {/* ذرات دود */}
       <circle cx="32" cy="20" r="6" fill="url(#smokeGradient)" className="smoke-1" />
       <circle cx="26" cy="18" r="5" fill="url(#smokeGradient)" className="smoke-2" />
       <circle cx="38" cy="16" r="5" fill="url(#smokeGradient)" className="smoke-3" />
 
-      {/* شعله اصلی */}
       <g className="flame-main">
         <path
           d="M32 75C21.5 75 13 66.5 13 56C13 48 17 41 22 35C22 35 21 43 26 46C26 46 25 38 30 30C30 30 29 38 33 42C33 42 31 33 36 25C36 25 35 34 39 39C39 39 38 30 43 22C43 22 42 31 46 37C50 43 51 48 51 56C51 66.5 42.5 75 32 75Z"
@@ -78,11 +75,12 @@ const FireIcon = () => {
   );
 };
 
-
-const ProductCard = ({ product, index }) => {
+const ProductCard = ({ product, index, onClick }) => {
   return (
-    <div className="flex items-center justify-between bg-white border border-gray-200 rounded-2xl p-3 hover:shadow-lg transition-all duration-300 min-h-[110px]">
-      {/* بخش متن و قیمت */}
+    <div
+      onClick={() => onClick(product)}
+      className="flex items-center justify-between bg-white border border-gray-200 rounded-2xl p-3 hover:shadow-lg transition-all duration-300 min-h-[110px] cursor-pointer"
+    >
       <div className="flex flex-col justify-between h-full flex-1 pl-2">
         <h3 className="text-[13px] font-bold text-gray-800 line-clamp-2 leading-6 mb-3">
           {product.title}
@@ -95,7 +93,6 @@ const ProductCard = ({ product, index }) => {
         </div>
       </div>
 
-      {/* بخش تصویر و شماره */}
       <div className="flex flex-col items-center justify-between h-full min-w-[70px] relative">
         <div className="absolute top-0 left-0 bg-[#008eb2] text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shadow-sm z-10">
           {index + 1}
@@ -112,11 +109,17 @@ const ProductCard = ({ product, index }) => {
   );
 };
 
-
 const ProductHotAndFreeSeller = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  const handleProductClick = (product) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
+
   return (
     <div className="w-full mx-auto p-4 bg-gray-50/50">
-      {/* هدر بخش */}
       <div className="flex flex-col items-center justify-center mb-10 mt-4">
         <div className="flex items-center gap-2">
           <FireIcon />
@@ -127,12 +130,22 @@ const ProductHotAndFreeSeller = () => {
         <p className="text-gray-400 text-xs md:text-sm">سه ماه گذشته</p>
       </div>
 
-      {/* گرید محصولات */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
         {products.map((product, index) => (
-          <ProductCard key={product.id} product={product} index={index} />
+          <ProductCard
+            key={product.id}
+            product={product}
+            index={index}
+            onClick={handleProductClick}
+          />
         ))}
       </div>
+
+      <ProductModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        product={selectedProduct}
+      />
     </div>
   );
 };

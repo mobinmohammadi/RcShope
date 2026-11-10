@@ -3,17 +3,40 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
+import ProductModal from "../../../../utils/ModalAddToBasket";
 
 // --- آیکون‌ها ---
 const HeartIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-red-400 hover:text-red-500 transition-colors">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className="w-5 h-5 text-red-400 hover:text-red-500 transition-colors"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+    />
   </svg>
 );
 
 const CartIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-white">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={2}
+    stroke="currentColor"
+    className="w-5 h-5 text-white"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+    />
   </svg>
 );
 
@@ -27,7 +50,7 @@ const products = [
     price: "۹,۹۰۰,۰۰۰",
     oldPrice: "۱۲,۴۰۰,۰۰۰",
     discount: "۲۰٪",
-    image : '/products/2.webp', // تصویر مشکی
+    image: "/products/2.webp", // تصویر مشکی
     isSpecial: false,
   },
   {
@@ -36,7 +59,7 @@ const products = [
     price: "۴,۰۰۰,۰۰۰",
     oldPrice: "۵,۲۰۰,۰۰۰",
     discount: "۲۳٪",
-    image : '/2.png', // تصویر سفید
+    image: "/2.png", // تصویر سفید
     isSpecial: true,
   },
   {
@@ -45,7 +68,7 @@ const products = [
     price: "۱۲,۵۰۰,۰۰۰",
     oldPrice: "۱۵,۰۰۰,۰۰۰",
     discount: "۱۷٪",
-    image : '/1.webp', 
+    image: "/1.webp",
     isSpecial: false,
   },
   {
@@ -54,16 +77,17 @@ const products = [
     price: "۹۲۱,۰۰۰",
     oldPrice: "۱,۱۰۰,۰۰۰",
     discount: "۱۶٪",
-    image : '/products/1.jpg', // تصویر تیره
+    image: "/products/1.jpg", // تصویر تیره
     isSpecial: true,
   },
   {
     id: 5,
-    title: "حافظه اس اس دی اینترنال وسترن دیجیتال مدل Green ظرفیت ۲۴۰ گیگابایت با رابط SATA III",
+    title:
+      "حافظه اس اس دی اینترنال وسترن دیجیتال مدل Green ظرفیت ۲۴۰ گیگابایت با رابط SATA III",
     price: "۶,۹۰۰,۰۰۰",
     oldPrice: "۸,۲۰۰,۰۰۰",
     discount: "۱۶٪",
-    image : '/2.png', // تصویر سبز
+    image: "/2.png", // تصویر سبز
     isSpecial: true,
   },
 ];
@@ -71,10 +95,15 @@ const products = [
 const RelatedProducts = () => {
   const [activeTab, setActiveTab] = useState("محصولات مرتبط");
 
+  const [isOpen, setIsOpen] = useState < Boolean > false;
+
+  const onClose = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <div className="w-full bg-[#f8f9fa] py-8 px-4  font-Dana">
       <div className=" mx-auto bg-white rounded-3xl shadow-sm border border-gray-100 p-4 md:p-6">
-        
         {/* هدر بخش (عنوان و تب‌ها) */}
         <div className="flex flex-col md:flex-row items-centrg mb-6 gap-4 border-b border-gray-100 pb-4">
           <h2 className="text-lg md:text-xl font-extrabold text-gray-800">
@@ -116,12 +145,12 @@ const RelatedProducts = () => {
           {products.map((product) => (
             <SwiperSlide key={product.id} className="h-auto">
               <div className="bg-white rounded-2xl border border-gray-200 flex flex-col h-[470px] overflow-hidden relative group">
-                
-                {/* نوار بالای کارت (تایمر و برچسب) */}
                 {product.isSpecial && (
                   <div className="bg-[#fff1f2] text-red-500 text-[11px] font-bold py-1.5 px-3 flex items-center justify-between w-full border-b border-red-100">
                     <span>فروش ویژه</span>
-                    <span className="font-mono tracking-wider" dir="ltr">۱۲ : ۴۵ : ۰۲</span>
+                    <span className="font-mono tracking-wider" dir="ltr">
+                      ۱۲ : ۴۵ : ۰۲
+                    </span>
                   </div>
                 )}
 
@@ -162,18 +191,20 @@ const RelatedProducts = () => {
                       {/* قیمت جدید */}
                       <div className="flex items-center gap-1 text-[#2c3e6b] font-extrabold">
                         <span className="text-sm">{product.price}</span>
-                        <span className="text-[10px] font-normal text-gray-500">تومان</span>
+                        <span className="text-[10px] font-normal text-gray-500">
+                          تومان
+                        </span>
                       </div>
                     </div>
 
                     {/* دکمه سبد خرید */}
-                    <button className="bg-[#2c3e6b] hover:bg-[#1e2b4d] text-white p-2.5 rounded-xl transition-colors shadow-sm cursor-pointer">
+                    <button onClick={onClose} className="bg-[#2c3e6b] hover:bg-[#1e2b4d] text-white p-2.5 rounded-xl transition-colors shadow-sm cursor-pointer">
                       <CartIcon />
                     </button>
                   </div>
                 </div>
-
               </div>
+              <ProductModal isOpen={isopen} onClose={onclose} />
             </SwiperSlide>
           ))}
         </Swiper>

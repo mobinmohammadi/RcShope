@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
-import { messageClear, user_register } from "../../../store/Reducers/authReducers";
+import {
+  messageClear,
+  user_register,
+} from "../../../store/Reducers/authReducers";
 import toast from "react-hot-toast";
 
 const UserIcon = () => (
@@ -35,6 +38,23 @@ const EmailIcon = () => (
       strokeLinecap="round"
       strokeLinejoin="round"
       d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+    />
+  </svg>
+);
+
+const PhoneIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className="w-5 h-5 text-gray-400"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
     />
   </svg>
 );
@@ -98,8 +118,9 @@ const EyeSlashIcon = () => (
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const { successMessage, errorMessage,loader } = useSelector(state => state.auth)
+  const { successMessage, errorMessage, loader } = useSelector(
+    (state) => state.auth,
+  );
 
   const {
     register,
@@ -113,38 +134,30 @@ const Register = () => {
 
   const password = watch("password");
   const dispatch = useDispatch();
-  const onSubmit = async (data) => {
+
+  const onSubmit = ({ confirmPassword, ...data }) => {
+    // confirmPassword را به بک‌اند نمی‌فرستیم
     dispatch(user_register(data));
-    
-
-    // await new Promise((resolve) => setTimeout(resolve, 1500));
-    // console.log("Form Data:", data);
-    // setIsSuccess(true);
-    // reset();
-    // setTimeout(() => setIsSuccess(false), 3000);
   };
-
+  const navigate = useNavigate()
 
   useEffect(() => {
-    if(successMessage){
-      toast.success(successMessage)
-      dispatch(messageClear())
-
-      reset()
+    if (successMessage) {
+      toast.success(successMessage);
+      dispatch(messageClear());
+      navigate("/profile")
       
+      reset();
     }
-     if(errorMessage){
-      toast.error(errorMessage)
-      dispatch(messageClear())
+    if (errorMessage) {
+      toast.error(errorMessage);
+      dispatch(messageClear());
     }
-    
-
-  },[successMessage, errorMessage])
+  }, [successMessage, errorMessage, dispatch, reset]);
 
   return (
     <div className="flex items-center justify-center bg-gradient-to-br from-blue-50 via-white font-Dana to-blue-50 p-4">
       <div className="w-full max-w-md bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 p-8 md:p-10">
-        {/* هدر فرم */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-50 text-blue-600 mb-4">
             <UserIcon />
@@ -157,26 +170,8 @@ const Register = () => {
           </p>
         </div>
 
-        {/* پیام موفقیت */}
-        {isSuccess && (
-          <div className="mb-6 p-4 bg-green-50 border border-green-200 text-green-700 text-sm rounded-xl flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="w-5 h-5"
-            >
-              <path
-                fillRule="evenodd"
-                d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z"
-                clipRule="evenodd"
-              />
-            </svg>
-            ثبت‌نام با موفقیت انجام شد!
-          </div>
-        )}
-
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" dir="rtl">
+          {/* نام و نام خانوادگی */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1.5">
               نام و نام خانوادگی
@@ -206,7 +201,7 @@ const Register = () => {
             )}
           </div>
 
-          {/* فیلد ایمیل */}
+          {/* ایمیل */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1.5">
               ایمیل
@@ -237,7 +232,39 @@ const Register = () => {
             )}
           </div>
 
-          {/* فیلد رمز عبور */}
+          {/* شماره تلفن */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1.5">
+              شماره تلفن
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                <PhoneIcon />
+              </div>
+              <input
+                type="tel"
+                inputMode="tel"
+                {...register("phone", {
+                  required: "وارد کردن شماره تلفن الزامی است.",
+                  pattern: {
+                    value: /^(\+98|0)?9\d{9}$/,
+                    message: "فرمت شماره موبایل صحیح نیست.",
+                  },
+                })}
+                className={`w-full pr-10 pl-3 py-3 bg-gray-50 border rounded-xl text-sm outline-none transition-all duration-200 focus:bg-white focus:ring-2 focus:ring-blue-100 text-right
+                  ${errors.phone ? "border-red-400 focus:border-red-400" : "border-gray-200 focus:border-blue-400"}`}
+                placeholder="09123456789"
+                dir="ltr"
+              />
+            </div>
+            {errors.phone && (
+              <p className="text-red-500 text-xs mt-1.5">
+                {errors.phone.message}
+              </p>
+            )}
+          </div>
+
+          {/* رمز عبور */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1.5">
               رمز عبور
@@ -275,6 +302,7 @@ const Register = () => {
             )}
           </div>
 
+          {/* تکرار رمز عبور */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1.5">
               تکرار رمز عبور

@@ -1,22 +1,42 @@
 @import "tailwindcss";
 @import "@heroui/styles";
 
-
 @theme {
-    --font-Dana: Dana, sans-serif;
-    --font-Morabba: Morabba;
+  --font-Dana: Dana, sans-serif;
+  --font-Morabba: Morabba;
+
+  /* ==== انیمیشن‌های Modal ==== */
+  --animate-fade-in: fade-in 200ms ease-out forwards;
+  --animate-fade-out: fade-out 180ms ease-in forwards;
+  --animate-slide-up: slide-up 280ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-slide-down: slide-down 200ms ease-in forwards;
+
+  @keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  @keyframes fade-out {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  @keyframes slide-up {
+    0% { opacity: 0; transform: translateY(40px) scale(0.98); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes slide-down {
+    0% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(40px) scale(0.98); }
+  }
 }
 
 @font-face {
-    font-family: Dana;
-    font-display: swap;
-    src: url("/public/fonts/Dana/woff2/DanaFaNum-Medium.woff2") format("woff2");
+  font-family: Dana;
+  font-display: swap;
+  src: url("/public/fonts/Dana/woff2/DanaFaNum-Medium.woff2") format("woff2");
 }
 
 @font-face {
-    font-family: Morabba;
-    font-display: swap;
-    src: url("/public/fonts/Morabba/woff2/Morabba-Medium.woff2") format("woff2");
+  font-family: Morabba;
+  font-display: swap;
+  src: url("/public/fonts/Morabba/woff2/Morabba-Medium.woff2") format("woff2");
 }
-
-

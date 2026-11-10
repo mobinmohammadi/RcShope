@@ -54,7 +54,7 @@ const amazingProducts = [
 
 export default function Home() {
   return (
-    <div >
+    <div>
       <SpecialOffersSlider products={amazingProducts} />
     </div>
   );
