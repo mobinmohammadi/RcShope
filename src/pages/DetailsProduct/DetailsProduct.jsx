@@ -1,4 +1,4 @@
-import BreadCrumbBasic from "../../../utils/BreadCrumbBasic";
+import BreadCrumbBasic from "../../utils/BreadCrumbBasic";
 import RelatedProducts from "../../components/detailsProduct/RelatedProducts/RelatedProducts";
 
 export default function DetailsProduct() {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ProductModal from "../../../../utils/ModalAddToBasket";
+import ProductModal from "../../../utils/ModalAddToBasket";
 
 const products = [
   { id: 1, title: "هارد اکسترنال ۱ ترابایت ای دیتا مدل HDV6G", price: "۱۲,۳۵۰,۰۰۰", image: "/2.png" },

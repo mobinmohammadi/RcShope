@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
-import { messageClear, user_login } from "../../../store/Reducers/authReducers";
+import { messageClear, user_login } from "../../store/Reducers/authReducers";
 import toast from "react-hot-toast";
 
-// --- آیکون‌های SVG ---
 const EmailIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"

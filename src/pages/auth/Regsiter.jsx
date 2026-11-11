@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router";
 import {
   messageClear,
   user_register,
-} from "../../../store/Reducers/authReducers";
+} from "../../store/Reducers/authReducers";
 import toast from "react-hot-toast";
 
 const UserIcon = () => (

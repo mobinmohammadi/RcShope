@@ -265,7 +265,7 @@ const Footer = () => {
             <div className="flex flex-col items-center sm:items-start">
               <div className="mb-5 sm:mb-6">
                 <h1 className="text-2xl sm:text-3xl font-black text-[#1b3b6f] tracking-tighter">
-                  Rc Shope
+                  Digi Shop
                 </h1>
               </div>
 

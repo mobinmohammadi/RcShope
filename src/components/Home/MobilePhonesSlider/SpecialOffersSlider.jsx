@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import OfferCard from "./OfferCard";
-import ProductModal from "../../../../utils/ModalAddToBasket"; // مسیر را چک کنید
+import ProductModal from "../../../utils/ModalAddToBasket"; // مسیر را چک کنید
 
 import "swiper/css";
 import "swiper/css/navigation";

@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
-import ProductModal from "../../../../utils/ModalAddToBasket";
+import ProductModal from "../../../utils/ModalAddToBasket";
 
 // --- آیکون‌ها ---
 const HeartIcon = () => (

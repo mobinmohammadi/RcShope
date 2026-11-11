@@ -11,7 +11,7 @@ import {
 import { ChevronLeftIcon } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { get_user_info } from "../../../store/Reducers/authReducers";
+import { get_user_info } from "../../store/Reducers/authReducers"; 
 
 const menuItems = [
   {

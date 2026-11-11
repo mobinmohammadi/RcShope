@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { LuHeart, LuShoppingCart, LuStar, LuZap } from "react-icons/lu";
-import ProductModal from "../../../../utils/ModalAddToBasket";
+import ProductModal from "../../../utils/ModalAddToBasket";
 
 export default function QuickViewSection() {
   const products = [
