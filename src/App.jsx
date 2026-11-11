@@ -17,6 +17,7 @@ import Addresses from "./pages/Dashboard/Addresses";
 import Favorites from "./pages/Dashboard/Favorites";
 import AccountDetails from "./pages/Dashboard/AccountDetails";
 import OrdersHistory from "./pages/Dashboard/OrdersHistory";
+import Cart from "./pages/Cart/Cart";
 
 const App = () => {
   const { token } = useSelector((state) => state.auth);
@@ -29,6 +30,8 @@ const App = () => {
         <Route path="/blogs" element={<BlogList />} />
         <Route path="/category" element={<Category />} />
         <Route path="/details-product/:id" element={<DetailsProduct />} />
+        <Route path="/cart" element={<Cart />} />
+
         <Route element={<ProtectedRoute token={token} />}>
           <Route path="profile" element={<Dashboard />}>
             <Route path="/profile" element={<UserDashboardContent />} />
@@ -37,7 +40,10 @@ const App = () => {
             <Route path="/profile/addresses" element={<Addresses />} />
             <Route path="/profile/favorites" element={<Favorites />} />
             <Route path="/profile/orders-history" element={<OrdersHistory />} />
-            <Route path="/profile/account-details" element={<AccountDetails />} />
+            <Route
+              path="/profile/account-details"
+              element={<AccountDetails />}
+            />
           </Route>
         </Route>
       </Route>
