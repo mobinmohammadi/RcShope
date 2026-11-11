@@ -1,5 +1,4 @@
-
-import React, { use, useState } from "react";
+import { useState } from "react";
 import {
   LuSearch as Search,
   LuShoppingBag as ShoppingBag,
@@ -24,7 +23,8 @@ import {
   LuTablet as Tablet,
   LuBatteryCharging as BatteryCharging,
 } from "react-icons/lu";
-import { useDispatch, useSelector } from "react-redux";
+
+import { useSelector } from "react-redux";
 import { Link } from "react-router";
 import { useTheme } from "../../Context/ThemeContext";
 import { Sun } from "lucide-react";
@@ -35,10 +35,8 @@ export default function Header() {
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState("موبایل");
 
-  const { theme, toggleSwitchTheme } = useTheme();
+  const { theme, toggleSwitchTheme, themeButtonRef } = useTheme();
   const isDark = theme === "dark";
-
-  const dispatch = useDispatch();
 
   const { userInfo } = useSelector((state) => state.auth);
 
@@ -111,11 +109,26 @@ export default function Header() {
   ];
 
   const activeSubItems =
-    categories.find((c) => c.title === activeCategory)?.subItems || [];
+    categories.find((category) => category.title === activeCategory)
+      ?.subItems || [];
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
+  const mobileMenuItems = [
+    { title: "فروشگاه", icon: ShoppingBag, href: "/" },
+    { title: "دسته‌بندی کالاها", icon: LayoutGrid, href: "/category" },
+    { title: "وبلاگ", icon: Flame, href: "/blogs" },
+    { title: "علاقه‌مندی‌ها", icon: Heart, href: "/profile/favorites" },
+    { title: "درباره ما", icon: User, href: "/about" },
+    { title: "تماس با ما", icon: Phone, href: "/contact" },
+  ];
 
   return (
     <header
-      className={`w-full border-b relative z-50 transition-colors duration-300 ${
+      dir="rtl"
+      className={`relative z-50 w-full border-b transition-colors duration-300 ${
         isDark
           ? "bg-[#080F20] border-[#243653] text-[#EAF2FF]"
           : "bg-white border-gray-200 text-gray-800"
@@ -124,10 +137,14 @@ export default function Header() {
       <div className="mx-auto flex sm:max-w-7xl items-center justify-between px-4 py-3 lg:py-4 gap-2 lg:gap-4">
         <div className="flex items-center gap-2 lg:gap-3 shrink-0">
           <button
+            type="button"
+            aria-label="باز کردن منو"
             className={`lg:hidden p-1 transition-colors ${
-              isDark ? "text-gray-300 hover:text-blue-400" : "text-gray-700"
+              isDark
+                ? "text-gray-300 hover:text-blue-400"
+                : "text-gray-700"
             }`}
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
           >
             {isMobileMenuOpen ? (
               <X className="h-6 w-6" />
@@ -136,11 +153,11 @@ export default function Header() {
             )}
           </button>
 
-          <div className="flex items-center">
-            <span className="text-2xl lg:text-3xl font-black text-blue-500 tracking-tighter block">
+          <Link to="/" className="flex items-center">
+            <span className="text-2xl lg:text-3xl font-black text-blue-500 tracking-tighter">
               مبین شاپ
             </span>
-          </div>
+          </Link>
         </div>
 
         <div className="relative hidden md:flex flex-1 max-w-2xl mx-auto px-2">
@@ -152,6 +169,7 @@ export default function Header() {
             }`}
           >
             <Search className="h-4 w-4 text-gray-400 ml-2 shrink-0" />
+
             <input
               type="text"
               placeholder="دنبال چی می‌گردی؟"
@@ -165,46 +183,58 @@ export default function Header() {
         </div>
 
         <div className="flex items-center gap-2 lg:gap-4 shrink-0">
-          <button className="flex items-center gap-2 rounded-full bg-blue-600 px-3 py-1.5 lg:px-4 lg:py-2 text-sm text-white transition-colors hover:bg-blue-500">
-            <LogIn className="h-4 w-4 lg:hidden" />
-            <User className="h-5 w-5 lg:hidden" />
-            {userInfo.fullName ? (
-              <Link to="/profile" className="hidden lg:block text-[13px]">
-                {userInfo.fullName}
+          <div className="flex items-center gap-2 rounded-full bg-blue-600 px-3 py-1.5 lg:px-4 lg:py-2 text-sm text-white transition-colors hover:bg-blue-500">
+            {userInfo?.fullName ? (
+              <Link to="/profile" className="text-[13px]">
+                <span className="hidden lg:inline">
+                  {userInfo.fullName}
+                </span>
+                <User className="h-5 w-5 lg:hidden" />
               </Link>
             ) : (
-              <Link to="/login" className="hidden lg:block text-[13px]">
-                ورود | ثبت نام
+              <Link to="/login" className="flex items-center gap-2">
+                <LogIn className="h-4 w-4 lg:hidden" />
+                <span className="hidden lg:block text-[13px]">
+                  ورود | ثبت نام
+                </span>
               </Link>
             )}
-          </button>
-<button
-  onClick={toggleSwitchTheme}
-  className={`hidden sm:flex items-center justify-center transition-colors ${
-    isDark
-      ? "text-yellow-400 hover:text-yellow-300"
-      : "text-gray-700 hover:text-blue-600"
-  }`}
->
-  {isDark ? (
-    <Sun className="h-5 w-5 lg:h-6 lg:w-6" />
-  ) : (
-    <Moon className="h-5 w-5 lg:h-6 lg:w-6" />
-  )}
-</button>
+          </div>
 
           <button
+            ref={themeButtonRef}
+            type="button"
+            aria-label="تغییر تم"
+            onClick={toggleSwitchTheme}
+            className={`flex items-center justify-center transition-colors ${
+              isDark
+                ? "text-yellow-400 hover:text-yellow-300"
+                : "text-gray-700 hover:text-blue-600"
+            }`}
+          >
+            {isDark ? (
+              <Sun className="h-5 w-5 lg:h-6 lg:w-6" />
+            ) : (
+              <Moon className="h-5 w-5 lg:h-6 lg:w-6" />
+            )}
+          </button>
+
+          <button
+            type="button"
+            aria-label="جستجو"
             className={`md:hidden transition-colors p-1 ${
               isDark
                 ? "text-gray-300 hover:text-blue-400"
                 : "text-gray-700 hover:text-black"
             }`}
-            onClick={() => setIsSearchOpen(!isSearchOpen)}
+            onClick={() => setIsSearchOpen((prev) => !prev)}
           >
             <Search className="h-5 w-5" />
           </button>
 
           <button
+            type="button"
+            aria-label="سبد خرید"
             className={`relative transition-colors p-1 ${
               isDark
                 ? "text-gray-300 hover:text-blue-400"
@@ -212,6 +242,7 @@ export default function Header() {
             }`}
           >
             <ShoppingBag className="h-5 w-5 lg:h-6 lg:w-6" />
+
             <span className="absolute right-0 top-0 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 text-[10px] font-bold text-white">
               ۰
             </span>
@@ -220,7 +251,7 @@ export default function Header() {
       </div>
 
       {isSearchOpen && (
-        <div className="md:hidden px-4 pb-3 w-full animate-in slide-in-from-top-2 duration-200">
+        <div className="md:hidden px-4 pb-3 w-full">
           <div
             className={`flex items-center rounded-full px-4 py-2 border ${
               isDark
@@ -229,6 +260,7 @@ export default function Header() {
             }`}
           >
             <Search className="h-4 w-4 text-gray-400 ml-2 shrink-0" />
+
             <input
               type="text"
               placeholder="دنبال چی می‌گردی؟"
@@ -258,21 +290,22 @@ export default function Header() {
             onMouseEnter={() => setIsCategoryOpen(true)}
             onMouseLeave={() => setIsCategoryOpen(false)}
           >
-            <div
-              className={`flex cursor-pointer items-center gap-1.5 transition-colors font-medium py-3 ${
-                isDark
-                  ? "hover:text-blue-400"
-                  : "hover:text-black"
+            <button
+              type="button"
+              onClick={() => setIsCategoryOpen((prev) => !prev)}
+              className={`flex items-center gap-1.5 transition-colors font-medium py-3 ${
+                isDark ? "hover:text-blue-400" : "hover:text-black"
               }`}
             >
               <LayoutGrid className="h-4 w-4 text-blue-500" />
               <span>دسته‌بندی کالاها</span>
+
               <ChevronDown
                 className={`h-3.5 w-3.5 transition-transform duration-200 ${
                   isCategoryOpen ? "rotate-180" : ""
                 }`}
               />
-            </div>
+            </button>
 
             {isCategoryOpen && (
               <div
@@ -287,12 +320,18 @@ export default function Header() {
                     isDark ? "border-[#243653]" : "border-gray-100"
                   }`}
                 >
-                  {categories.map((cat) => (
-                    <div
-                      key={cat.id}
-                      onMouseEnter={() => setActiveCategory(cat.title)}
+                  {categories.map((category) => (
+                    <button
+                      type="button"
+                      key={category.id}
+                      onMouseEnter={() =>
+                        setActiveCategory(category.title)
+                      }
+                      onClick={() =>
+                        setActiveCategory(category.title)
+                      }
                       className={`flex items-center justify-between px-3 py-2.5 rounded-lg cursor-pointer transition-colors ${
-                        activeCategory === cat.title
+                        activeCategory === category.title
                           ? isDark
                             ? "bg-blue-500/15 text-blue-400"
                             : "bg-blue-50 text-[#0a3187]"
@@ -301,32 +340,26 @@ export default function Header() {
                             : "hover:bg-gray-50 text-gray-700"
                       }`}
                     >
-                      <div className="flex items-center gap-2.5">
+                      <span className="flex items-center gap-2.5">
                         <span
                           className={
-                            activeCategory === cat.title
+                            activeCategory === category.title
                               ? "text-blue-500"
                               : isDark
                                 ? "text-gray-500"
                                 : "text-gray-400"
                           }
                         >
-                          {cat.icon}
+                          {category.icon}
                         </span>
+
                         <span className="font-medium text-[13px]">
-                          {cat.title}
+                          {category.title}
                         </span>
-                      </div>
-                      <ChevronLeft
-                        className={`h-3.5 w-3.5 ${
-                          activeCategory === cat.title
-                            ? "text-blue-500"
-                            : isDark
-                              ? "text-gray-600"
-                              : "text-gray-300"
-                        }`}
-                      />
-                    </div>
+                      </span>
+
+                      <ChevronLeft className="h-3.5 w-3.5" />
+                    </button>
                   ))}
                 </div>
 
@@ -345,10 +378,11 @@ export default function Header() {
                   </div>
 
                   <div className="flex flex-col gap-3.5">
-                    {activeSubItems.map((sub, idx) => (
-                      <a
-                        key={idx}
-                        href="#"
+                    {activeSubItems.map((sub, index) => (
+                      <Link
+                        key={index}
+                        to="/category"
+                        onClick={() => setIsCategoryOpen(false)}
                         className={`flex items-center gap-2.5 transition-colors text-[13px] ${
                           isDark
                             ? "text-gray-300 hover:text-blue-400"
@@ -361,7 +395,7 @@ export default function Header() {
                           }`}
                         />
                         <span>{sub}</span>
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -373,63 +407,56 @@ export default function Header() {
             className={`h-4 w-px ${
               isDark ? "bg-[#304563]" : "bg-gray-300"
             }`}
-          ></div>
+          />
 
           <nav className="flex items-center gap-5 py-3">
-            <a
-              href="#"
-              className={`transition-colors ${
-                isDark ? "hover:text-blue-400" : "hover:text-black"
-              }`}
-            >
-              فروشگاه
-            </a>
-            <a
-              href="#"
-              className={`transition-colors ${
-                isDark ? "hover:text-blue-400" : "hover:text-black"
-              }`}
-            >
-              وبلاگ
-            </a>
-            <a
-              href="#"
-              className={`transition-colors ${
-                isDark ? "hover:text-blue-400" : "hover:text-black"
-              }`}
-            >
-              درباره ما
-            </a>
-            <a
-              href="#"
-              className={`transition-colors ${
-                isDark ? "hover:text-blue-400" : "hover:text-black"
-              }`}
-            >
-              تماس با ما
-            </a>
+            {[
+              { title: "فروشگاه", href: "/" },
+              { title: "وبلاگ", href: "/blogs" },
+              { title: "درباره ما", href: "/about" },
+              { title: "تماس با ما", href: "/contact" },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                to={item.href}
+                className={`transition-colors ${
+                  isDark
+                    ? "hover:text-blue-400"
+                    : "hover:text-black"
+                }`}
+              >
+                {item.title}
+              </Link>
+            ))}
           </nav>
 
           <div
             className={`h-4 w-px ${
               isDark ? "bg-[#304563]" : "bg-gray-300"
             }`}
-          ></div>
+          />
 
-          <a
-            href="#"
+          <Link
+            to="/"
             className="flex items-center gap-1 text-[#c42f2f] font-medium hover:text-red-500 transition-colors py-3"
           >
             <Flame className="h-4 w-4" />
             <span>فروش ویژه</span>
-          </a>
+          </Link>
         </div>
 
         <div className="flex items-center gap-4">
-          <button className="text-red-500 hover:text-red-400 transition-colors">
+          <Link
+            to="/profile/favorites"
+            aria-label="علاقه‌مندی‌ها"
+            className="text-red-500 hover:text-red-400 transition-colors"
+          >
             <Heart className="h-4 w-4" />
-          </button>
-          <button
+          </Link>
+
+          <a
+            href="tel:"
+            aria-label="تماس با ما"
             className={`transition-colors ${
               isDark
                 ? "text-gray-300 hover:text-blue-400"
@@ -437,189 +464,173 @@ export default function Header() {
             }`}
           >
             <Phone className="h-4 w-4" />
-          </button>
+          </a>
         </div>
       </div>
 
-    
-{isMobileMenuOpen && (
-  <div className="lg:hidden fixed inset-0 z-[100]">
-
-    {/* Overlay */}
-    <div
-      className="absolute inset-0 bg-black/50 backdrop-blur-sm animate-in fade-in duration-300"
-      onClick={() => setIsMobileMenuOpen(false)}
-    />
-
-    {/* Drawer */}
-    <div
-      dir="rtl"
-      className={`absolute right-0 top-0 h-full w-[85%] max-w-[340px] shadow-2xl flex flex-col
-        animate-in slide-in-from-right duration-300
-        ${
-          isDark
-            ? "bg-[#0D1930] text-gray-100 border-l border-[#243653]"
-            : "bg-white text-gray-800 border-l border-gray-100"
-        }`}
-    >
-
-      {/* Header */}
-      <div
-        className={`flex items-center justify-between p-5 border-b ${
-          isDark ? "border-[#243653]" : "border-gray-100"
-        }`}
-      >
-        <div>
-          <h2 className="text-xl font-black text-blue-500">
-            مبین شاپ
-          </h2>
-          <p className={`text-xs mt-1 ${
-            isDark ? "text-gray-400" : "text-gray-500"
-          }`}>
-            تجربه خرید هوشمند
-          </p>
-        </div>
-
-        <button
-          onClick={() => setIsMobileMenuOpen(false)}
-          className={`p-2 rounded-xl transition-colors ${
-            isDark
-              ? "bg-[#1B3152] text-gray-300 hover:bg-red-500/20 hover:text-red-400"
-              : "bg-gray-100 text-gray-600 hover:bg-red-50 hover:text-red-500"
-          }`}
-        >
-          <X className="w-5 h-5" />
-        </button>
-      </div>
-
-      {/* Search */}
-      <div className="px-5 pt-5">
-        <div
-          className={`flex items-center gap-3 rounded-xl px-4 py-3 border ${
-            isDark
-              ? "bg-[#142440] border-[#263D60]"
-              : "bg-gray-50 border-gray-200"
-          }`}
-        >
-          <Search className="w-4 h-4 text-gray-400" />
-
-          <input
-            type="text"
-            placeholder="جستجوی محصولات..."
-            className={`w-full bg-transparent outline-none text-sm ${
-              isDark
-                ? "text-white placeholder:text-gray-500"
-                : "text-gray-700 placeholder:text-gray-400"
-            }`}
+      {isMobileMenuOpen && (
+        <div className="lg:hidden fixed inset-0 z-[100]">
+          <button
+            type="button"
+            aria-label="بستن منو"
+            className="absolute inset-0 w-full h-full bg-black/50 backdrop-blur-sm"
+            onClick={closeMobileMenu}
           />
-        </div>
-      </div>
 
-      {/* Menu Items */}
-      <div className="flex-1 overflow-y-auto px-5 py-5">
+          <div
+            className={`absolute right-0 top-0 h-full w-[85%] max-w-[340px] shadow-2xl flex flex-col ${
+              isDark
+                ? "bg-[#0D1930] text-gray-100 border-l border-[#243653]"
+                : "bg-white text-gray-800 border-l border-gray-100"
+            }`}
+          >
+            <div
+              className={`flex items-center justify-between p-5 border-b ${
+                isDark ? "border-[#243653]" : "border-gray-100"
+              }`}
+            >
+              <div>
+                <h2 className="text-xl font-black text-blue-500">
+                  مبین شاپ
+                </h2>
 
-        <p className={`text-xs font-bold mb-4 ${
-          isDark ? "text-gray-500" : "text-gray-400"
-        }`}>
-          منوی اصلی
-        </p>
+                <p
+                  className={`text-xs mt-1 ${
+                    isDark ? "text-gray-400" : "text-gray-500"
+                  }`}
+                >
+                  تجربه خرید هوشمند
+                </p>
+              </div>
 
-        <div className="flex flex-col gap-2">
-
-          {[
-            { title: "فروشگاه", icon: ShoppingBag, href: "/" },
-            { title: "دسته‌بندی کالاها", icon: LayoutGrid, href: "/categories" },
-            { title: "وبلاگ", icon: Flame, href: "/blog" },
-            { title: "علاقه‌مندی‌ها", icon: Heart, href: "/favorites" },
-            { title: "درباره ما", icon: User, href: "/about" },
-            { title: "تماس با ما", icon: Phone, href: "/contact" },
-          ].map((item, index) => {
-            const Icon = item.icon;
-
-            return (
-              <a
-                key={index}
-                href={item.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={`group flex items-center justify-between p-3.5 rounded-xl transition-all duration-200 ${
+              <button
+                type="button"
+                onClick={closeMobileMenu}
+                aria-label="بستن منو"
+                className={`p-2 rounded-xl transition-colors ${
                   isDark
-                    ? "hover:bg-[#1B3152] text-gray-300 hover:text-blue-400"
-                    : "hover:bg-blue-50 text-gray-700 hover:text-blue-600"
+                    ? "bg-[#1B3152] text-gray-300 hover:bg-red-500/20 hover:text-red-400"
+                    : "bg-gray-100 text-gray-600 hover:bg-red-50 hover:text-red-500"
                 }`}
               >
-                <div className="flex items-center gap-3">
-                  <div
-                    className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
-                      isDark
-                        ? "bg-[#1B3152] text-blue-400 group-hover:bg-blue-500/20"
-                        : "bg-blue-50 text-blue-600 group-hover:bg-blue-100"
-                    }`}
-                  >
-                    <Icon className="w-5 h-5" />
-                  </div>
+                <X className="w-5 h-5" />
+              </button>
+            </div>
 
-                  <span className="text-sm font-semibold">
-                    {item.title}
+            <div className="px-5 pt-5">
+              <div
+                className={`flex items-center gap-3 rounded-xl px-4 py-3 border ${
+                  isDark
+                    ? "bg-[#142440] border-[#263D60]"
+                    : "bg-gray-50 border-gray-200"
+                }`}
+              >
+                <Search className="w-4 h-4 text-gray-400" />
+
+                <input
+                  type="text"
+                  placeholder="جستجوی محصولات..."
+                  className={`w-full bg-transparent outline-none text-sm ${
+                    isDark
+                      ? "text-white placeholder:text-gray-500"
+                      : "text-gray-700 placeholder:text-gray-400"
+                  }`}
+                />
+              </div>
+            </div>
+
+            <div className="flex-1 overflow-y-auto px-5 py-5">
+              <p
+                className={`text-xs font-bold mb-4 ${
+                  isDark ? "text-gray-500" : "text-gray-400"
+                }`}
+              >
+                منوی اصلی
+              </p>
+
+              <div className="flex flex-col gap-2">
+                {mobileMenuItems.map((item) => {
+                  const Icon = item.icon;
+
+                  return (
+                    <Link
+                      key={item.href}
+                      to={item.href}
+                      onClick={closeMobileMenu}
+                      className={`group flex items-center justify-between p-3.5 rounded-xl transition-all duration-200 ${
+                        isDark
+                          ? "hover:bg-[#1B3152] text-gray-300 hover:text-blue-400"
+                          : "hover:bg-blue-50 text-gray-700 hover:text-blue-600"
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div
+                          className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
+                            isDark
+                              ? "bg-[#1B3152] text-blue-400 group-hover:bg-blue-500/20"
+                              : "bg-blue-50 text-blue-600 group-hover:bg-blue-100"
+                          }`}
+                        >
+                          <Icon className="w-5 h-5" />
+                        </div>
+
+                        <span className="text-sm font-semibold">
+                          {item.title}
+                        </span>
+                      </div>
+
+                      <ChevronLeft className="w-4 h-4 opacity-40 group-hover:opacity-100 transition-all group-hover:-translate-x-1" />
+                    </Link>
+                  );
+                })}
+              </div>
+
+              <div className="mt-6 rounded-2xl bg-gradient-to-l from-blue-700 to-blue-500 p-4 text-white">
+                <div className="flex items-center gap-2 mb-2">
+                  <Flame className="w-5 h-5" />
+                  <span className="font-bold text-sm">
+                    پیشنهادهای ویژه
                   </span>
                 </div>
 
-                <ChevronLeft className="w-4 h-4 opacity-40 group-hover:opacity-100 transition-all group-hover:-translate-x-1" />
-              </a>
-            );
-          })}
+                <p className="text-xs text-blue-100 leading-6">
+                  جدیدترین تخفیف‌ها و پیشنهادهای جذاب مبین‌شاپ را ببینید.
+                </p>
+              </div>
+            </div>
 
-        </div>
+            <div
+              className={`p-5 border-t ${
+                isDark ? "border-[#243653]" : "border-gray-100"
+              }`}
+            >
+              <button
+                type="button"
+                onClick={toggleSwitchTheme}
+                className={`w-full flex items-center justify-between p-3 rounded-xl ${
+                  isDark
+                    ? "bg-[#142440] text-yellow-400"
+                    : "bg-gray-100 text-gray-700"
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  {isDark ? (
+                    <Sun className="w-5 h-5" />
+                  ) : (
+                    <Moon className="w-5 h-5" />
+                  )}
 
-        {/* Special Offer */}
-        <div className="mt-6 rounded-2xl bg-gradient-to-l from-blue-700 to-blue-500 p-4 text-white">
-          <div className="flex items-center gap-2 mb-2">
-            <Flame className="w-5 h-5" />
-            <span className="font-bold text-sm">
-              پیشنهادهای ویژه
-            </span>
+                  <span className="text-sm font-semibold">
+                    {isDark ? "حالت روشن" : "حالت تاریک"}
+                  </span>
+                </div>
+
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+            </div>
           </div>
-
-          <p className="text-xs text-blue-100 leading-6">
-            جدیدترین تخفیف‌ها و پیشنهادهای جذاب مبین‌شاپ را ببینید.
-          </p>
         </div>
-
-      </div>
-
-      {/* Footer */}
-      <div
-        className={`p-5 border-t ${
-          isDark ? "border-[#243653]" : "border-gray-100"
-        }`}
-      >
-        <button
-          onClick={toggleSwitchTheme}
-          className={`w-full flex items-center justify-between p-3 rounded-xl ${
-            isDark
-              ? "bg-[#142440] text-yellow-400"
-              : "bg-gray-100 text-gray-700"
-          }`}
-        >
-          <div className="flex items-center gap-3">
-            {isDark ? (
-              <Sun className="w-5 h-5" />
-            ) : (
-              <Moon className="w-5 h-5" />
-            )}
-
-            <span className="text-sm font-semibold">
-              {isDark ? "حالت روشن" : "حالت تاریک"}
-            </span>
-          </div>
-
-          <ChevronLeft className="w-4 h-4" />
-        </button>
-      </div>
-
-    </div>
-  </div>
-)}
-
+      )}
     </header>
   );
-}
+}   

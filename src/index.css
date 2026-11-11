@@ -41,3 +41,4 @@
   src: url("/public/fonts/Morabba/woff2/Morabba-Medium.woff2") format("woff2");
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
