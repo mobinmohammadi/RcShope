@@ -1,6 +1,5 @@
 import FilterSidebar from "../components/Category/FilterSidebar/FilterSidebar"
 import ProductCart from "../components/Category/ProductCart/ProductCart"
-import RelatedProducts from "../components/detailsProduct/RelatedProducts/RelatedProducts";
 import SortBar from "../components/Category/SortBar"
 
 

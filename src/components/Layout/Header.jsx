@@ -22,6 +22,10 @@ import {
   LuMonitor as Monitor,
   LuTablet as Tablet,
   LuBatteryCharging as BatteryCharging,
+  LuMinus as Minus,
+  LuPlus as Plus,
+  LuTrash2 as Trash2,
+  LuShoppingCart as ShoppingCart,
 } from "react-icons/lu";
 
 import { useSelector } from "react-redux";
@@ -34,11 +38,39 @@ export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState("موبایل");
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const { theme, toggleSwitchTheme, themeButtonRef } = useTheme();
   const isDark = theme === "dark";
 
   const { userInfo } = useSelector((state) => state.auth);
+
+  const cartItems = [
+    {
+      id: 1,
+      title: "گوشی موبایل اپل iPhone 15 Pro",
+      price: "۸۵,۰۰۰,۰۰۰",
+      qty: 1,
+      image:
+        "/1.webp",
+    },
+    {
+      id: 2,
+      title: "هدفون بی سیم سونی WH-1000XM5",
+      price: "۱۵,۲۰۰,۰۰۰",
+      qty: 2,
+      image:
+        "/1.webp",
+    },
+    {
+      id: 3,
+      title: "اپل واچ سری ۹ سایز ۴۵ میلیمتری",
+      price: "۲۲,۵۰۰,۰۰۰",
+      qty: 1,
+      image:
+        "/1.webp",
+    },
+  ];
 
   const categories = [
     {
@@ -194,7 +226,7 @@ export default function Header() {
             ) : (
               <Link to="/login" className="flex items-center gap-2">
                 <LogIn className="h-4 w-4 lg:hidden" />
-                <span className="hidden lg:block text-[13px]">
+                <span className=" lg:block text-[13px]">
                   ورود | ثبت نام
                 </span>
               </Link>
@@ -235,6 +267,7 @@ export default function Header() {
           <button
             type="button"
             aria-label="سبد خرید"
+            onClick={() => setIsCartOpen(true)}
             className={`relative transition-colors p-1 ${
               isDark
                 ? "text-gray-300 hover:text-blue-400"
@@ -244,7 +277,7 @@ export default function Header() {
             <ShoppingBag className="h-5 w-5 lg:h-6 lg:w-6" />
 
             <span className="absolute right-0 top-0 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 text-[10px] font-bold text-white">
-              ۰
+              {cartItems.length.toLocaleString("fa-IR")}
             </span>
           </button>
         </div>
@@ -468,6 +501,213 @@ export default function Header() {
         </div>
       </div>
 
+      {/* Cart Drawer - Left Side */}
+      <div
+        className={`lg:hidden fixed inset-0 z-[110] transition-opacity duration-300 ${
+          isCartOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
+      >
+        {/* Overlay */}
+        <div
+          className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+          onClick={() => setIsCartOpen(false)}
+        />
+
+        {/* Drawer Panel - slides from left */}
+        <div
+          className={`absolute left-0 top-0 h-full w-[85%] max-w-[360px] shadow-2xl flex flex-col transform transition-transform duration-300 ease-out ${
+            isCartOpen ? "translate-x-0" : "-translate-x-full"
+          } ${
+            isDark
+              ? "bg-[#0D1930] text-gray-100 border-r border-[#243653]"
+              : "bg-white text-gray-800 border-r border-gray-100"
+          }`}
+        >
+          {/* Header */}
+          <div
+            className={`flex items-center justify-between p-5 border-b ${
+              isDark ? "border-[#243653]" : "border-gray-100"
+            }`}
+          >
+            <div className="flex items-center gap-2">
+              <ShoppingCart className="w-5 h-5 text-blue-500" />
+              <h2 className="text-lg font-bold">سبد خرید</h2>
+              <span
+                className={`text-xs px-2 py-0.5 rounded-full ${
+                  isDark
+                    ? "bg-blue-500/20 text-blue-400"
+                    : "bg-blue-50 text-blue-600"
+                }`}
+              >
+                {cartItems.length.toLocaleString("fa-IR")} کالا
+              </span>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setIsCartOpen(false)}
+              aria-label="بستن سبد خرید"
+              className={`p-2 rounded-xl transition-colors ${
+                isDark
+                  ? "bg-[#1B3152] text-gray-300 hover:bg-red-500/20 hover:text-red-400"
+                  : "bg-gray-100 text-gray-600 hover:bg-red-50 hover:text-red-500"
+              }`}
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Items */}
+          <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-3">
+            {cartItems.length === 0 ? (
+              <div className="flex flex-col items-center justify-center h-full gap-3">
+                <div
+                  className={`w-16 h-16 rounded-full flex items-center justify-center ${
+                    isDark ? "bg-[#1B3152]" : "bg-gray-100"
+                  }`}
+                >
+                  <ShoppingBag
+                    className={`w-8 h-8 ${
+                      isDark ? "text-gray-500" : "text-gray-400"
+                    }`}
+                  />
+                </div>
+                <p
+                  className={`text-sm ${
+                    isDark ? "text-gray-400" : "text-gray-500"
+                  }`}
+                >
+                  سبد خرید شما خالی است
+                </p>
+              </div>
+            ) : (
+              cartItems.map((item) => (
+                <div
+                  key={item.id}
+                  className={`flex gap-3 p-3 rounded-2xl border ${
+                    isDark
+                      ? "bg-[#142440] border-[#263D60]"
+                      : "bg-gray-50 border-gray-100"
+                  }`}
+                >
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-16 h-16 rounded-xl object-cover shrink-0"
+                  />
+
+                  <div className="flex-1 min-w-0 flex flex-col justify-between">
+                    <div className="flex items-start justify-between gap-2">
+                      <h3
+                        className={`text-xs font-semibold leading-5 line-clamp-2 ${
+                          isDark ? "text-gray-200" : "text-gray-800"
+                        }`}
+                      >
+                        {item.title}
+                      </h3>
+
+                      <button
+                        type="button"
+                        aria-label="حذف"
+                        className={`shrink-0 p-1 rounded-lg transition-colors ${
+                          isDark
+                            ? "text-gray-500 hover:text-red-400 hover:bg-red-500/10"
+                            : "text-gray-400 hover:text-red-500 hover:bg-red-50"
+                        }`}
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+
+                    <div className="flex items-center justify-between mt-2">
+                      <div
+                        className={`flex items-center gap-2 rounded-lg border px-2 py-1 ${
+                          isDark
+                            ? "border-[#263D60] bg-[#0D1930]"
+                            : "border-gray-200 bg-white"
+                        }`}
+                      >
+                        <button
+                          type="button"
+                          aria-label="افزایش"
+                          className="text-blue-500 hover:text-blue-400"
+                        >
+                          <Plus className="w-3.5 h-3.5" />
+                        </button>
+                        <span className="text-xs font-bold w-5 text-center">
+                          {item.qty.toLocaleString("fa-IR")}
+                        </span>
+                        <button
+                          type="button"
+                          aria-label="کاهش"
+                          className="text-blue-500 hover:text-blue-400"
+                        >
+                          <Minus className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+
+                      <div className="text-left">
+                        <p className="text-[11px] text-blue-500 font-bold">
+                          {item.price}
+                        </p>
+                        <p
+                          className={`text-[10px] ${
+                            isDark ? "text-gray-500" : "text-gray-400"
+                          }`}
+                        >
+                          تومان
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+
+          {/* Footer */}
+          {cartItems.length > 0 && (
+            <div
+              className={`p-5 border-t ${
+                isDark ? "border-[#243653]" : "border-gray-100"
+              }`}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <span
+                  className={`text-sm ${
+                    isDark ? "text-gray-400" : "text-gray-500"
+                  }`}
+                >
+                  جمع کل
+                </span>
+                <div className="text-left">
+                  <span className="text-lg font-black text-blue-500">
+                    ۱۲۲,۷۰۰,۰۰۰
+                  </span>
+                  <span
+                    className={`text-xs mr-1 ${
+                      isDark ? "text-gray-400" : "text-gray-500"
+                    }`}
+                  >
+                    تومان
+                  </span>
+                </div>
+              </div>
+
+              <Link
+                to="/cart"
+                onClick={() => setIsCartOpen(false)}
+                className="block w-full text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition-colors"
+              >
+                مشاهده سبد و پرداخت
+              </Link>
+            </div>
+          )}
+        </div>
+      </div>
+
       {isMobileMenuOpen && (
         <div className="lg:hidden fixed inset-0 z-[100]">
           <button
@@ -633,4 +873,4 @@ export default function Header() {
       )}
     </header>
   );
-}   
+}
